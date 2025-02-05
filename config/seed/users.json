@@ -1,0 +1,32 @@
+[
+    {
+        "_id": {
+            "$oid": "65b8d8f2e1b1c25a8b7e4a6d"
+        },
+        "email": "lukas@gmail.com",
+        "role": "CTO",
+        "created_at": {
+            "$date": "2025-02-05T12:00:00Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "65b8d8f2e1b1c25a8b7e4a6e"
+        },
+        "email": "andreas@gmail.com",
+        "role": "Tech Lead",
+        "created_at": {
+            "$date": "2025-02-05T12:00:00Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "65b8d8f2e1b1c25a8b7e4a6f"
+        },
+        "email": "Philipp@gmail.com",
+        "role": null,
+        "created_at": {
+            "$date": "2025-02-05T12:00:00Z"
+        }
+    }
+]

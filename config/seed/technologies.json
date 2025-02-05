@@ -1,0 +1,24 @@
+[
+    {
+        "_id": {
+            "$oid": "65b8d8f2e1b1c25a8b7e4a6d"
+        },
+        "name": "SvelteKit",
+        "description": "A framework for building web applications with Svelte.",
+        "quadrant": {
+            "$ref": "categories",
+            "$id": "quadrant_tools"
+        },
+        "ring": {
+            "$ref": "maturities",
+            "$id": "ring_adopt"
+        },
+        "status": "active",
+        "created_at": {
+            "$date": "2025-02-05T12:00:00Z"
+        },
+        "updated_at": {
+            "$date": "2025-02-05T12:30:00Z"
+        }
+    }
+]
