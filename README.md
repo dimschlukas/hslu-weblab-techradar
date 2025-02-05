@@ -8,6 +8,12 @@ This project consists of following components:
 | **Backend**  | Express.js | Lightweight web framework for Node.js |
 | **Database** | MongoDB    | Persistent data storage               |
 
+## Documentation
+
+Documentation is written following the [arc42](https://arc42.org/) documentation standard. Mostly all is written in plain markdown and can be found within the [`./docs`](docs/) subdirectory.
+
+Since this is a school project, I also needed to track my work in a journal: [View Work Journal](docs/work_journal.md)
+
 ## Install
 
 To install all dependencies, run:
