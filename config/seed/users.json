@@ -5,7 +5,11 @@
         },
         "email": "lukas@gmail.com",
         "role": "CTO",
-        "created_at": {
+        "password": "password",
+        "createdAt": {
+            "$date": "2025-02-05T12:00:00Z"
+        },
+        "updatedAt": {
             "$date": "2025-02-05T12:00:00Z"
         }
     },
@@ -15,7 +19,11 @@
         },
         "email": "andreas@gmail.com",
         "role": "Tech Lead",
-        "created_at": {
+        "password": "password",
+        "createdAt": {
+            "$date": "2025-02-05T12:00:00Z"
+        },
+        "updatedAt": {
             "$date": "2025-02-05T12:00:00Z"
         }
     },
@@ -25,7 +33,11 @@
         },
         "email": "Philipp@gmail.com",
         "role": null,
-        "created_at": {
+        "password": "password",
+        "createdAt": {
+            "$date": "2025-02-05T12:00:00Z"
+        },
+        "updatedAt": {
             "$date": "2025-02-05T12:00:00Z"
         }
     }
