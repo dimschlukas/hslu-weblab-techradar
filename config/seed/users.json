@@ -5,7 +5,7 @@
         },
         "email": "lukas@gmail.com",
         "role": "CTO",
-        "password": "password",
+        "password": "$2b$10$alu4XYEWeWesPe38Q4Yfv.XFB9aArsvXElGTFqplXEFTg2rKHTxya",
         "createdAt": {
             "$date": "2025-02-05T12:00:00Z"
         },
@@ -19,7 +19,7 @@
         },
         "email": "andreas@gmail.com",
         "role": "Tech Lead",
-        "password": "password",
+        "password": "$2b$10$CNfZ2ozTikBe5VkE.b4xU.oyDY4qTSkfPfpG8fEXLCnYP9ilhlDGS",
         "createdAt": {
             "$date": "2025-02-05T12:00:00Z"
         },
@@ -33,7 +33,7 @@
         },
         "email": "Philipp@gmail.com",
         "role": null,
-        "password": "password",
+        "password": "$2b$10$R9HdxoT2KGwwCgwrITmWj.ggfQSpMA.vUQYN4lRgNoUdJTztPOlt2",
         "createdAt": {
             "$date": "2025-02-05T12:00:00Z"
         },
