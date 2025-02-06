@@ -6,13 +6,14 @@ import {
   updateUser,
   deleteUser
 } from '../controllers/userController.js';
+import { protect } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
-router.get('/', getUsers);
-router.get('/:id', getUser);
-router.post('/', createUser);
-router.put('/:id', updateUser);
-router.delete('/:id', deleteUser);
+router.get('/', protect, getUsers);
+router.get('/:id', protect, getUser);
+router.post('/', protect, createUser);
+router.put('/:id', protect, updateUser);
+router.delete('/:id', protect, deleteUser);
 
 export default router;
