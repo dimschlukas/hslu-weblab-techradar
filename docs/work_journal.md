@@ -17,4 +17,10 @@
   - bcrypt for salting and hashing plain text passwords
   - jwt as session (1h expire, and currently no renew)
 
-**Total: 9h**
+## 2025-02-07 (3h)
+
+- Add autorefresh for JWT on backend (Refresh only if not expired)
+- Frontend: Create login component and reactive form.
+- Started doing the same for register component --> wip
+
+**Total: 13h**
