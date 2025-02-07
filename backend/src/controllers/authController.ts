@@ -18,11 +18,11 @@ export const registerUser = async (req: Request, res: Response): Promise<void> =
     const user = new User({ email, password: hashedPassword, role });
     await user.save();
 
+    res.setHeader('Authorization', `Bearer ${generateToken(user._id.toString())}`);
     res.status(201).json({
       id: user._id,
       email: user.email,
-      role: user.role,
-      token: generateToken(user._id.toString())
+      role: user.role
     });
   } catch (err) {
     res.status(400).json({ error: 'Invalid data' });
@@ -39,11 +39,11 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
       return;
     }
 
+    res.setHeader('Authorization', `Bearer ${generateToken(user._id.toString())}`);
     res.status(201).json({
       id: user._id,
       email: user.email,
-      role: user.role,
-      token: generateToken(user._id.toString())
+      role: user.role
     });
   } catch (err) {
     res.status(400).json({ error: 'Invalid data' });
