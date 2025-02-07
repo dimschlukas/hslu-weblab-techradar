@@ -1,0 +1,33 @@
+  <div>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
+        <div>
+            <label for="email-control">Email</label>
+            <input id="email-control" type="text" formControlName="email" />
+            
+            @if (submitted && registerForm.controls['email'].errors) {
+                <div >
+                    @if (registerForm.controls['email'].errors['required']) {
+                        <div>Email is required</div>
+                    }
+                    @if (registerForm.controls['email'].errors['email']) {
+                        <div>Email must be a valid email address</div>
+                    }
+                </div>
+            }
+        </div>
+        <div>
+            <label for="password-control">Password</label>
+            <input id="password-control" type="text" formControlName="password" />
+            @if (submitted && registerForm.controls['password'].errors) {
+                <div>
+                    @if (registerForm.controls['password'].errors['required']) {
+                        <div>Password is required</div>
+                    }
+                </div>
+            }
+        </div>
+        <div>
+            <button>Submit</button>
+        </div>
+    </form>
+</div>
