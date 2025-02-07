@@ -1,11 +1,7 @@
 import { Request, Response } from 'express';
-import jwt from 'jsonwebtoken';
 import User from '../models/userModel.js';
 import { comparePass, hashPass } from '../utils/passwort.js';
-
-const generateToken = (id: string): string => {
-  return jwt.sign({ id }, process.env.JWT_SECRET as string, { expiresIn: '1h' });
-};
+import { generateToken } from '../utils/jwt.js';
 
 export const registerUser = async (req: Request, res: Response): Promise<void> => {
   try {
