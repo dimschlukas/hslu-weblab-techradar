@@ -5,7 +5,7 @@ import { generateToken } from '../utils/jwt.js';
 
 export const registerUser = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { email, password, role } = req.body;
+    const { email, password } = req.body;
     const userExists = await User.findOne({ email: email });
 
     if (userExists) {
@@ -14,8 +14,7 @@ export const registerUser = async (req: Request, res: Response): Promise<void> =
     }
 
     const hashedPassword = await hashPass(password);
-    console.log(hashedPassword);
-    const user = new User({ email, password: hashedPassword, role });
+    const user = new User({ email, password: hashedPassword });
     await user.save();
 
     res.setHeader('Authorization', `Bearer ${generateToken(user._id.toString())}`);
