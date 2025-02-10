@@ -23,10 +23,12 @@
 - Frontend: Create login component and reactive form with validation.
 - Started doing the same for register component --> wip
 
-## 2025-02-10 (5h)
+## 2025-02-10 (7h)
 
 - Finish register reactive form with validation
 - Setup CORS on backend
 - Create user login and register requests (Frontend --> backend --> DB)
+- Add Material UI to style components
+- Add TailwindCSS for padding, spacing and placing components, also for styling non-material components
 
-**Total: 18h**
+**Total: 20h**
