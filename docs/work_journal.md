@@ -20,7 +20,13 @@
 ## 2025-02-07 (3h)
 
 - Add autorefresh for JWT on backend (Refresh only if not expired)
-- Frontend: Create login component and reactive form.
+- Frontend: Create login component and reactive form with validation.
 - Started doing the same for register component --> wip
 
-**Total: 13h**
+## 2025-02-10 (5h)
+
+- Finish register reactive form with validation
+- Setup CORS on backend
+- Create user login and register requests (Frontend --> backend --> DB)
+
+**Total: 18h**
