@@ -9,6 +9,7 @@ import {
   Validators
 } from '@angular/forms';
 import { FormValues } from '../../../models/loginFormValues';
+import { AuthService } from '../../../shared/services/auth/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -20,7 +21,7 @@ export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private authService: AuthService) {}
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -45,5 +46,6 @@ export class RegisterComponent implements OnInit {
     }
 
     console.log('Submit: ', data);
+    this.authService.login(data.email, data.password);
   }
 }
