@@ -1,42 +1,61 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { LoginCredentials } from '../../../models/loginFormValues';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  FormGroupDirective,
+  FormsModule,
+  NgForm,
+  ReactiveFormsModule,
+  Validators
+} from '@angular/forms';
+import { LoginCredentials } from '../../../models/loginCredentials';
 import { AuthService } from '../../../shared/services/auth/auth.service';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { ErrorStateMatcher } from '@angular/material/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-login',
-  imports: [RouterModule, ReactiveFormsModule],
+  imports: [
+    RouterModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    MatButtonModule,
+    MatCardModule
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent implements OnInit {
-  registerForm!: FormGroup;
-  submitted = false;
+export class LoginComponent {
   errorMessage: string | null = null;
+  matcher = new MyErrorStateMatcher();
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private authService: AuthService,
-    private router: Router
-  ) {}
+  registerForm = new FormGroup({
+    email: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required, Validators.email]
+    }),
+    password: new FormControl('', { nonNullable: true, validators: [Validators.required] })
+  });
 
-  ngOnInit() {
-    this.registerForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]]
-    });
-  }
+  constructor(private authService: AuthService, private router: Router) {}
 
-  onSubmit(data: LoginCredentials) {
-    this.submitted = true;
-
+  onSubmit() {
     if (this.registerForm.invalid) {
       return;
     }
 
-    console.log('Submit: ', data);
-    this.authService.login(data).subscribe({
+    const formData = this.registerForm.value as LoginCredentials;
+
+    console.log();
+    this.authService.login(formData).subscribe({
       next: (isAuthenticated) => {
         if (isAuthenticated) {
           this.router.navigate(['/dashboard']);
@@ -46,5 +65,13 @@ export class LoginComponent implements OnInit {
         this.errorMessage = error.message;
       }
     });
+  }
+}
+
+/** Error when invalid control is dirty, touched, or submitted. */
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
   }
 }

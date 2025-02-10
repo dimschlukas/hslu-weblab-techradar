@@ -8,7 +8,7 @@ import {
   ValidationErrors,
   Validators
 } from '@angular/forms';
-import { LoginCredentials } from '../../../models/loginFormValues';
+import { LoginCredentials } from '../../../models/loginCredentials';
 import { AuthService } from '../../../shared/services/auth/auth.service';
 
 @Component({

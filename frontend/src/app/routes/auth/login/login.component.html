@@ -1,36 +1,34 @@
-  <div>
-    @if (errorMessage) {
-        <div>{{errorMessage}}</div>
-    }
-    <form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
-        <div>
-            <label for="email-control">Email</label>
-            <input id="email-control" type="text" formControlName="email" />
-            
-            @if (submitted && registerForm.controls['email'].errors) {
-                <div >
-                    @if (registerForm.controls['email'].errors['required']) {
-                        <div>Email is required</div>
-                    }
-                    @if (registerForm.controls['email'].errors['email']) {
-                        <div>Email must be a valid email address</div>
-                    }
-                </div>
+<div style="width: 250px; align-self: center;">
+    <mat-card appearance="outlined">
+        <mat-card-content>
+
+            @if (errorMessage) {
+            <div>{{ errorMessage }}</div>
             }
-        </div>
-        <div>
-            <label for="password-control">Password</label>
-            <input id="password-control" type="text" formControlName="password" />
-            @if (submitted && registerForm.controls['password'].errors) {
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Email</mat-label>
+                    <input type="email" matInput [formControl]="registerForm.controls.email"
+                        [errorStateMatcher]="matcher" placeholder="Ex. ang@example.com" />
+                    @if (registerForm.controls.email.hasError('email') &&
+                    !registerForm.controls.email.hasError('required')) {
+                    <mat-error>Please enter a valid email address</mat-error>
+                    } @if (registerForm.controls.email.hasError('required')) {
+                    <mat-error>Email is <strong>required</strong></mat-error>
+                    }
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Password</mat-label>
+                    <input type="password" matInput [formControl]="registerForm.controls.password"
+                        [errorStateMatcher]="matcher" />
+                    @if (registerForm.controls.password.hasError('required')) {
+                    <mat-error>Password is <strong>required</strong></mat-error>
+                    }
+                </mat-form-field>
                 <div>
-                    @if (registerForm.controls['password'].errors['required']) {
-                        <div>Password is required</div>
-                    }
+                    <button mat-raised-button>Submit</button>
                 </div>
-            }
-        </div>
-        <div>
-            <button>Submit</button>
-        </div>
-    </form>
+            </form>
+        </mat-card-content>
+    </mat-card>
 </div>
