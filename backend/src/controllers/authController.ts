@@ -9,7 +9,7 @@ export const registerUser = async (req: Request, res: Response): Promise<void> =
     const userExists = await User.findOne({ email: email });
 
     if (userExists) {
-      res.status(400).json({ error: 'User already exists' });
+      res.status(400).json({ message: 'User already exists' });
       return;
     }
 
@@ -25,7 +25,7 @@ export const registerUser = async (req: Request, res: Response): Promise<void> =
       role: user.role
     });
   } catch (err) {
-    res.status(400).json({ error: 'Invalid data' });
+    res.status(400).json({ message: 'Invalid data' });
   }
 };
 
@@ -35,7 +35,7 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
     const user = await User.findOne({ email: email });
 
     if (!user || !(await comparePass(password, user.password))) {
-      res.status(400).json({ error: 'Invalid email or password' });
+      res.status(400).json({ message: 'Invalid email or password' });
       return;
     }
 
@@ -46,6 +46,6 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
       role: user.role
     });
   } catch (err) {
-    res.status(400).json({ error: 'Invalid data' });
+    res.status(400).json({ message: 'Invalid data' });
   }
 };
