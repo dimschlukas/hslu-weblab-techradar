@@ -1,4 +1,15 @@
-<h1>{{title}}</h1>
+<mat-toolbar>
+    <button mat-icon-button class="menu-icon" aria-label="Menu icon-button">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span>{{title}}</span>
+    <span class="titlebar-spacer"></span>
+    @if (isLoggedIn()) {
+        <button mat-icon-button aria-label="Logout icon-button" matTooltip="Logout" (click)="logout()">
+            <mat-icon>logout</mat-icon>
+        </button>
+    }
+</mat-toolbar>
 <nav>
     <a routerLink="/dashboard">Dashboard</a>
     <a routerLink="/login">Login</a>
