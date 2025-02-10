@@ -1,18 +1,35 @@
+import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { catchError, map, Observable, tap, throwError } from 'rxjs';
+import { LoginCredentials } from '../../../models/loginFormValues';
+import { environment } from '../../../../environment/environment';
+import { User } from '../../../models/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private router: Router) {}
+  url = environment.backendUrl + '/auth';
 
-  login(username: string, password: string): boolean {
-    // Mock authentication (Replace with actual API call)
-    const token =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'; // This should come from an API response
-    localStorage.setItem('token', token);
-    return true;
+  constructor(private router: Router, private http: HttpClient) {}
+
+  login(credentials: LoginCredentials): Observable<User> {
+    return this.http
+      .post<HttpResponse<User>>(`${this.url}/login`, credentials, {
+        observe: 'response',
+        withCredentials: true
+      })
+      .pipe(
+        tap((res) => {
+          const token = res.headers.get('Authorization')?.split(' ')[1];
+          if (token) {
+            localStorage.setItem('token', token);
+          }
+        }),
+        map((res) => res.body as unknown as User),
+        catchError(this.handleError)
+      );
   }
 
   logout(): void {
@@ -36,5 +53,21 @@ export class AuthService {
     } catch (e) {
       return true;
     }
+  }
+
+  private handleError(error: HttpErrorResponse): Observable<never> {
+    let errorMessage = 'Something went wrong. Please try again later.';
+
+    if (error.error instanceof ErrorEvent) {
+      // Client-side error
+      console.error('Client-side error:', error.error.message);
+      errorMessage = error.error.message;
+    } else {
+      // Server-side error
+      console.error(`Backend returned code ${error.status}, body was:`, error.error);
+      errorMessage = error.error?.message || `Error Code: ${error.status}`;
+    }
+
+    return throwError(() => new Error(errorMessage));
   }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { FormValues } from '../../../models/loginFormValues';
+import { LoginCredentials } from '../../../models/loginFormValues';
 import { AuthService } from '../../../shared/services/auth/auth.service';
 
 @Component({
@@ -13,8 +13,13 @@ import { AuthService } from '../../../shared/services/auth/auth.service';
 export class LoginComponent implements OnInit {
   registerForm!: FormGroup;
   submitted = false;
+  errorMessage: string | null = null;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -23,7 +28,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  onSubmit(data: FormValues) {
+  onSubmit(data: LoginCredentials) {
     this.submitted = true;
 
     if (this.registerForm.invalid) {
@@ -31,6 +36,15 @@ export class LoginComponent implements OnInit {
     }
 
     console.log('Submit: ', data);
-    this.authService.login(data.email, data.password);
+    this.authService.login(data).subscribe({
+      next: (isAuthenticated) => {
+        if (isAuthenticated) {
+          this.router.navigate(['/dashboard']);
+        }
+      },
+      error: (error: Error) => {
+        this.errorMessage = error.message;
+      }
+    });
   }
 }

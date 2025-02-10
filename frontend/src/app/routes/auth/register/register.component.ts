@@ -8,7 +8,7 @@ import {
   ValidationErrors,
   Validators
 } from '@angular/forms';
-import { FormValues } from '../../../models/loginFormValues';
+import { LoginCredentials } from '../../../models/loginFormValues';
 import { AuthService } from '../../../shared/services/auth/auth.service';
 
 @Component({
@@ -38,7 +38,7 @@ export class RegisterComponent implements OnInit {
     return password === confirmPassword ? null : { passwordsMismatch: true };
   }
 
-  onSubmit(data: FormValues) {
+  onSubmit(data: LoginCredentials) {
     this.submitted = true;
 
     if (this.registerForm.invalid) {
@@ -46,6 +46,6 @@ export class RegisterComponent implements OnInit {
     }
 
     console.log('Submit: ', data);
-    this.authService.login(data.email, data.password);
+    this.authService.login(data);
   }
 }
