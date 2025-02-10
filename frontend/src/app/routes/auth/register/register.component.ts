@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import {
   AbstractControl,
   FormBuilder,
@@ -20,8 +20,13 @@ import { AuthService } from '../../../shared/services/auth/auth.service';
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
   submitted = false;
+  errorMessage: string | null = null;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -46,6 +51,15 @@ export class RegisterComponent implements OnInit {
     }
 
     console.log('Submit: ', data);
-    this.authService.login(data);
+    this.authService.register(data).subscribe({
+      next: (isAuthenticated) => {
+        if (isAuthenticated) {
+          this.router.navigate(['/dashboard']);
+        }
+      },
+      error: (error: Error) => {
+        this.errorMessage = error.message;
+      }
+    });
   }
 }

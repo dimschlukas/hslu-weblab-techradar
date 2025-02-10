@@ -32,6 +32,24 @@ export class AuthService {
       );
   }
 
+  register(credentials: LoginCredentials): Observable<User> {
+    return this.http
+      .post<HttpResponse<User>>(`${this.url}/register`, credentials, {
+        observe: 'response',
+        withCredentials: true
+      })
+      .pipe(
+        tap((res) => {
+          const token = res.headers.get('Authorization')?.split(' ')[1];
+          if (token) {
+            localStorage.setItem('token', token);
+          }
+        }),
+        map((res) => res.body as unknown as User),
+        catchError(this.handleError)
+      );
+  }
+
   logout(): void {
     localStorage.removeItem('token');
     this.router.navigate(['/login']);

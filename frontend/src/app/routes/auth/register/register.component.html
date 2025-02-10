@@ -1,4 +1,7 @@
 <div>
+    @if (errorMessage) {
+        <div>{{errorMessage}}</div>
+    }
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
         <div>
             <label for="email-control">Email</label>
