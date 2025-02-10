@@ -29,7 +29,6 @@ import { MatCardModule } from '@angular/material/card';
     MatButtonModule,
     MatCardModule
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })

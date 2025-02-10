@@ -1,12 +1,14 @@
-<div style="width: 250px; align-self: center;">
+<div class="max-w-lg place-self-center p-4">
     <mat-card appearance="outlined">
         <mat-card-content>
-
-            @if (errorMessage) {
-            <div>{{ errorMessage }}</div>
-            }
+            <p class="text-4xl">Sign in</p>
+            <div class="h-10 py-2">
+                @if (errorMessage) {
+                <mat-error>{{errorMessage}}</mat-error>
+                }
+            </div>
             <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-                <mat-form-field class="example-full-width">
+                <mat-form-field class="w-full">
                     <mat-label>Email</mat-label>
                     <input type="email" matInput [formControl]="registerForm.controls.email"
                         [errorStateMatcher]="matcher" placeholder="Ex. ang@example.com" />
@@ -17,7 +19,7 @@
                     <mat-error>Email is <strong>required</strong></mat-error>
                     }
                 </mat-form-field>
-                <mat-form-field class="example-full-width">
+                <mat-form-field class="w-full">
                     <mat-label>Password</mat-label>
                     <input type="password" matInput [formControl]="registerForm.controls.password"
                         [errorStateMatcher]="matcher" />
@@ -25,8 +27,8 @@
                     <mat-error>Password is <strong>required</strong></mat-error>
                     }
                 </mat-form-field>
-                <div>
-                    <button mat-raised-button>Submit</button>
+                <div class="place-self-end">
+                    <button mat-raised-button>Login</button>
                 </div>
             </form>
         </mat-card-content>
