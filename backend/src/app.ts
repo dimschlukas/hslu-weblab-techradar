@@ -1,5 +1,6 @@
 import connectDB from './config/db.js';
 import userRoutes from './routes/userRoutes.js';
+import technologyRoutes from './routes/technologyRoutes.js';
 import express from 'express';
 import dotenv from 'dotenv';
 import authRoutes from './routes/authRoutes.js';
@@ -27,6 +28,7 @@ app.use(cors(corsOptions));
 
 // Routes
 app.use('/api/users', userRoutes);
+app.use('/api/technologies', technologyRoutes);
 app.use('/api/auth', authRoutes);
 
 export default app;

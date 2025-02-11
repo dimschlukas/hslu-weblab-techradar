@@ -1,5 +1,8 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import '../models/categoryModel.js';
+import '../models/ringModel.js';
+import '../models/technologyModel.js';
 
 dotenv.config();
 
