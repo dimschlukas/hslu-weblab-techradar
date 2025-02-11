@@ -1,21 +1,21 @@
 [
     {
-        "_id": "ring_adopt",
+        "_id": "adopt",
         "name": "Adopt",
         "description": "Blips that we think you should seriously consider using."
     },
     {
-        "_id": "ring_trial",
+        "_id": "trial",
         "name": "Trial",
         "description": "Things we think are ready for use, but not as completely proven as those in the Adopt ring."
     },
     {
-        "_id": "ring_assess",
+        "_id": "assess",
         "name": "Assess",
         "description": "Things to look at closely, but not necessarily trial yet — unless you think they would be a particularly good fit for you."
     },
     {
-        "_id": "ring_hold",
+        "_id": "hold",
         "name": "Hold",
         "description": "Proceed with caution."
     }

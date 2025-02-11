@@ -5,19 +5,14 @@
         },
         "name": "SvelteKit",
         "description": "A framework for building web applications with Svelte.",
-        "quadrant": {
-            "$ref": "categories",
-            "$id": "quadrant_tools"
-        },
-        "ring": {
-            "$ref": "maturities",
-            "$id": "ring_adopt"
-        },
+        "justification": "SvelteKit provides a highly efficient and developer-friendly framework for modern web applications, offering optimized performance, seamless server-side rendering, and growing industry adoption, making it a strong choice for production use.",
+        "category": "tools",
+        "ring": "adopt",
         "status": "active",
-        "created_at": {
+        "createdAt": {
             "$date": "2025-02-05T12:00:00Z"
         },
-        "updated_at": {
+        "updatedAt": {
             "$date": "2025-02-05T12:30:00Z"
         }
     }

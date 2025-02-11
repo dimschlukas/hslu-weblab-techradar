@@ -47,8 +47,8 @@ mongoimport --host=localhost --port=27017\
 
 mongoimport --host=localhost --port=27017\
   --db=${MONGO_DATABASE} \
-  --collection=maturities \
-  --file=/docker-entrypoint-initdb.d/maturities.json \
+  --collection=rings \
+  --file=/docker-entrypoint-initdb.d/rings.json \
   --jsonArray --username=${MONGO_ROOT_USERNAME} --password=${MONGO_ROOT_PASSWORD} --authenticationDatabase=admin
 
 mongoimport --host=localhost --port=27017\

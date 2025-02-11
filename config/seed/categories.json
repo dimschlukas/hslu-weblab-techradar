@@ -1,26 +1,22 @@
 [
     {
-        "_id": "quadrant_techniques",
-        "type": "quadrant",
+        "_id": "techniques",
         "name": "Techniques",
         "description": "Best practices, methodologies, and approaches for software development and operations."
     },
     {
-        "_id": "quadrant_platforms",
-        "type": "quadrant",
+        "_id": "platforms",
         "name": "Platforms",
         "description": "Infrastructure, cloud services, and runtime environments that support software execution."
     },
     {
-        "_id": "quadrant_tools",
-        "type": "quadrant",
+        "_id": "tools",
         "name": "Tools",
         "description": "Software tools that assist in development, testing, deployment, and monitoring."
     },
     {
-        "_id": "quadrant_languages_frameworks",
-        "type": "quadrant",
-        "name": "Language & Frameworks",
+        "_id": "languages_frameworks",
+        "name": "Languages & Frameworks",
         "description": "Programming languages and development frameworks that are used to build applications."
     }
 ]
