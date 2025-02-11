@@ -17,12 +17,11 @@ export const registerUser = async (req: Request, res: Response): Promise<void> =
     const user = new User({ email, password: hashedPassword });
     await user.save();
 
-    res.setHeader('Authorization', `Bearer ${generateToken(user._id.toString())}`);
-    res.status(201).json({
-      id: user._id,
-      email: user.email,
-      role: user.role
-    });
+    res.setHeader(
+      'Authorization',
+      `Bearer ${generateToken(user._id.toString(), user.email, user.role)}`
+    );
+    res.status(201).send();
   } catch (err) {
     res.status(400).json({ message: 'Invalid data' });
   }
@@ -37,13 +36,11 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
       res.status(400).json({ message: 'Invalid email or password' });
       return;
     }
-
-    res.setHeader('Authorization', `Bearer ${generateToken(user._id.toString())}`);
-    res.status(201).json({
-      id: user._id,
-      email: user.email,
-      role: user.role
-    });
+    res.setHeader(
+      'Authorization',
+      `Bearer ${generateToken(user._id.toString(), user.email, user.role)}`
+    );
+    res.status(204).send();
   } catch (err) {
     res.status(400).json({ message: 'Invalid data' });
   }

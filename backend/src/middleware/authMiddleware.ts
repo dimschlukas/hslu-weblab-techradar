@@ -17,7 +17,7 @@ export const protect = async (
     try {
       token = req.headers.authorization.split(' ')[1];
       const decoded = verifyToken(token);
-      const newToken = generateToken(decoded.id);
+      const newToken = generateToken(decoded.id, decoded.email, decoded.role);
       res.setHeader('Authorization', `Bearer ${newToken}`);
       req.user = await User.findById(decoded.id).select('-password');
       next();
