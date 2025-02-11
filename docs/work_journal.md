@@ -28,7 +28,16 @@
 - Finish register reactive form with validation
 - Setup CORS on backend
 - Create user login and register requests (Frontend --> backend --> DB)
-- Add Material UI to style components
+- Add Material UI to style
 - Add TailwindCSS for padding, spacing and placing components, also for styling non-material components
+- Styling login component
 
-**Total: 20h**
+## 2025-02-11 (7h)
+
+- Styling register component
+- Create admin panel and protect it with jwt payload `role` (`CTO` and `Tech Lead` are allowed)
+- Modulate technologies database entries
+- Add CRUD backend api operations for technologies
+- Create form for adding new technologies
+
+**Total: 27h**
