@@ -5,14 +5,12 @@
     <span>{{title}}</span>
     <span class="titlebar-spacer"></span>
     @if (isLoggedIn()) {
-        <button mat-icon-button aria-label="Logout icon-button" matTooltip="Logout" (click)="logout()">
-            <mat-icon>logout</mat-icon>
-        </button>
+    <button mat-icon-button aria-label="Logout icon-button" matTooltip="Logout" (click)="logout()">
+        <mat-icon>logout</mat-icon>
+    </button>
     }
 </mat-toolbar>
 <nav>
     <a routerLink="/dashboard">Dashboard</a>
-    <a routerLink="/login">Login</a>
-    <a routerLink="/register">Register</a>
 </nav>
 <router-outlet></router-outlet>

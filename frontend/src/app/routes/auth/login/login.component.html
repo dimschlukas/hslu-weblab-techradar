@@ -1,7 +1,7 @@
 <div class="max-w-96 place-self-center p-4">
     <mat-card appearance="outlined">
         <mat-card-content>
-            <p class="text-4xl">Sign in</p>
+            <p class="text-4xl">Login</p>
             <div class="h-10 py-2">
                 @if (errorMessage) {
                 <mat-error>{{errorMessage}}</mat-error>
@@ -27,8 +27,12 @@
                     <mat-error>Password is <strong>required</strong></mat-error>
                     }
                 </mat-form-field>
-                <div class="place-self-end">
-                    <button mat-raised-button>Login</button>
+                <div class="pt-4">
+                    <button mat-flat-button class="w-full">Login</button>
+                </div>
+                <div class="place-self-center pt-4">
+                    <p>Don't have an account? <a routerLink="/register" class="underline text-blue-500">Register</a>
+                    </p>
                 </div>
             </form>
         </mat-card-content>
