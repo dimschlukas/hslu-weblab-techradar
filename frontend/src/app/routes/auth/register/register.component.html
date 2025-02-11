@@ -1,50 +1,47 @@
-<div>
-    @if (errorMessage) {
-        <div>{{errorMessage}}</div>
-    }
-    <form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
-        <div>
-            <label for="email-control">Email</label>
-            <input id="email-control" type="text" formControlName="email" />
-            
-            @if (submitted && registerForm.controls['email'].errors) {
-                <div >
-                    @if (registerForm.controls['email'].errors['required']) {
-                        <div>Email is required</div>
+<div class="max-w-96 place-self-center p-4">
+    <mat-card appearance="outlined">
+        <mat-card-content>
+            <p class="text-4xl">Register</p>
+            <div class="h-10 py-2">
+                @if (errorMessage) {
+                <mat-error>{{errorMessage}}</mat-error>
+                }
+                @if (registerForm.hasError('passwordsMismatch') && isSubmitted) {
+                <mat-error>Passwords do not match</mat-error>
+                }
+            </div>
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                <mat-form-field class="w-full">
+                    <mat-label>Email</mat-label>
+                    <input type="email" matInput [formControl]="registerForm.controls.email"
+                        [errorStateMatcher]="matcher" />
+                    @if (registerForm.controls.email.hasError('email') &&
+                    !registerForm.controls.email.hasError('required')) {
+                    <mat-error>Please enter a valid email address</mat-error>
+                    } @if (registerForm.controls.email.hasError('required')) {
+                    <mat-error>Email is <strong>required</strong></mat-error>
                     }
-                    @if (registerForm.controls['email'].errors['email']) {
-                        <div>Email must be a valid email address</div>
+                </mat-form-field>
+                <mat-form-field class="w-full">
+                    <mat-label>Password</mat-label>
+                    <input type="password" matInput [formControl]="registerForm.controls.password"
+                        [errorStateMatcher]="matcher" />
+                    @if (registerForm.controls.password.hasError('required')) {
+                    <mat-error>Password is <strong>required</strong></mat-error>
                     }
+                </mat-form-field>
+                <mat-form-field class="w-full">
+                    <mat-label>Confrim Password</mat-label>
+                    <input type="password" matInput [formControl]="registerForm.controls.confirmPassword"
+                        [errorStateMatcher]="matcher" />
+                    @if (registerForm.controls.confirmPassword.hasError('required')) {
+                    <mat-error>Confirm password is <strong>required</strong></mat-error>
+                    }
+                </mat-form-field>
+                <div class="place-self-end">
+                    <button mat-raised-button>Register</button>
                 </div>
-            }
-        </div>
-        <div>
-            <label for="password-control">Password</label>
-            <input id="password-control" type="text" formControlName="password" />
-            @if (submitted && registerForm.controls['password'].errors) {
-                <div>
-                    @if (registerForm.controls['password'].errors['required']) {
-                        <div>Password is required</div>
-                    }
-                </div>
-            }
-        </div>
-        <div>
-            <label for="confirmPassword-control">Confirm Password</label>
-            <input id="confirmPassword-control" type="text" formControlName="confirmPassword" />
-            @if (submitted && registerForm.controls['confirmPassword'].errors) {
-                <div>
-                    @if (registerForm.controls['confirmPassword'].errors['required']) {
-                        <div>Confirm password is required</div>
-                    }
-                    @if (registerForm.controls['confirmPassword'].errors['passwordsMismatch']) {
-                        <div>Passwords do not match</div>
-                    }
-                </div>
-            }
-        </div>
-        <div>
-            <button>Submit</button>
-        </div>
-    </form>
+            </form>
+        </mat-card-content>
+    </mat-card>
 </div>
