@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import {
@@ -14,7 +14,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
 import { Technology } from '../../models/technology';
 import { TechnologiesService } from '../../shared/services/technologies/technologies.service';
@@ -28,13 +27,13 @@ import { TechnologiesService } from '../../shared/services/technologies/technolo
     MatInputModule,
     FormsModule,
     MatButtonModule,
-    MatCardModule,
     MatSelectModule
   ],
   templateUrl: './create-technology-form.component.html',
   styleUrl: './create-technology-form.component.scss'
 })
-export class CreateTechnologyFormComponent {
+export class CreateTechnologyFormComponent implements OnInit {
+  @Input() initialData!: Technology;
   errorMessage: string | null = null;
   matcher = new MyErrorStateMatcher();
   technologyForm = new FormGroup({
@@ -46,6 +45,9 @@ export class CreateTechnologyFormComponent {
   });
 
   constructor(private TechnologiesService: TechnologiesService, private location: Location) {}
+  ngOnInit(): void {
+    this.technologyForm.patchValue(this.initialData);
+  }
 
   onSubmit() {
     if (this.technologyForm.invalid) {
