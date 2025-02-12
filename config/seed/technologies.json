@@ -1,19 +1,138 @@
 [
     {
         "_id": {
-            "$oid": "65b8d8f2e1b1c25a8b7e4a6d"
+            "$oid": "65b8e1a3e1b1c25a8b7e4a6e"
         },
-        "name": "SvelteKit",
-        "description": "A framework for building web applications with Svelte.",
-        "justification": "SvelteKit provides a highly efficient and developer-friendly framework for modern web applications, offering optimized performance, seamless server-side rendering, and growing industry adoption, making it a strong choice for production use.",
-        "category": "tools",
-        "ring": "adopt",
-        "status": "active",
+        "name": "Deno",
+        "description": "A modern runtime for JavaScript and TypeScript built on V8 and Rust.",
+        "justification": "Deno provides a secure and developer-friendly alternative to Node.js, featuring a built-in package manager, TypeScript support, and a strong focus on security and performance.",
+        "category": "Platforms",
+        "ring": "Assess",
+        "published": true,
         "createdAt": {
-            "$date": "2025-02-05T12:00:00Z"
+            "$date": "2025-02-05T12:10:00Z"
         },
         "updatedAt": {
+            "$date": "2025-02-05T12:40:00Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "65b8e1b5e1b1c25a8b7e4a6f"
+        },
+        "name": "Rust",
+        "description": "A systems programming language that guarantees memory safety and concurrency without garbage collection.",
+        "justification": "Rust is gaining traction for performance-critical applications, offering safety guarantees that help prevent memory errors and concurrency issues, making it a strong candidate for adoption in system-level programming.",
+        "category": "Languages & Frameworks",
+        "ring": "Trial",
+        "published": true,
+        "createdAt": {
+            "$date": "2025-02-05T12:15:00Z"
+        },
+        "updatedAt": {
+            "$date": "2025-02-05T12:45:00Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "65b8e1c7e1b1c25a8b7e4a70"
+        },
+        "name": "GraphQL",
+        "description": "A query language for APIs that provides a flexible and efficient alternative to REST.",
+        "justification": "GraphQL enables clients to request only the data they need, reducing over-fetching and improving performance. It is widely adopted in modern applications for its flexibility and developer experience.",
+        "category": "Techniques",
+        "ring": "Adopt",
+        "published": true,
+        "createdAt": {
+            "$date": "2025-02-05T12:20:00Z"
+        },
+        "updatedAt": {
+            "$date": "2025-02-05T12:50:00Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "65b8e1d9e1b1c25a8b7e4a71"
+        },
+        "name": "Turborepo",
+        "description": "A high-performance build system for JavaScript and TypeScript monorepos.",
+        "justification": "Turborepo significantly improves build performance in monorepo projects by caching and parallelizing tasks, making it an attractive choice for teams working with large-scale JavaScript projects.",
+        "category": "Tools",
+        "ring": "Trial",
+        "published": true,
+        "createdAt": {
+            "$date": "2025-02-05T12:25:00Z"
+        },
+        "updatedAt": {
+            "$date": "2025-02-05T12:55:00Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "65b8e1ebe1b1c25a8b7e4a72"
+        },
+        "name": "Kubernetes",
+        "description": "An open-source system for automating deployment, scaling, and management of containerized applications.",
+        "justification": "Kubernetes is the industry standard for orchestrating containerized applications, providing scalability, resilience, and efficient resource management, making it a key technology in cloud-native architectures.",
+        "category": "Platforms",
+        "ring": "Adopt",
+        "published": true,
+        "createdAt": {
             "$date": "2025-02-05T12:30:00Z"
+        },
+        "updatedAt": {
+            "$date": "2025-02-05T13:00:00Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "65b8e1fde1b1c25a8b7e4a73"
+        },
+        "name": "Serverless Architecture",
+        "description": "A cloud computing execution model where the cloud provider dynamically manages server resources.",
+        "justification": "Serverless computing allows developers to focus on business logic without managing infrastructure, offering automatic scaling and cost efficiency, but it requires consideration of cold starts and vendor lock-in.",
+        "category": "Techniques",
+        "ring": "Trial",
+        "published": true,
+        "createdAt": {
+            "$date": "2025-02-05T12:35:00Z"
+        },
+        "updatedAt": {
+            "$date": "2025-02-05T13:05:00Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "65b8e20fe1b1c25a8b7e4a74"
+        },
+        "name": "Vue.js",
+        "description": "A progressive JavaScript framework for building user interfaces.",
+        "justification": "Vue.js offers a simple and flexible approach to frontend development, making it easy to learn and highly productive for building interactive web applications.",
+        "category": "Languages & Frameworks",
+        "ring": "Trial",
+        "published": true,
+        "createdAt": {
+            "$date": "2025-02-05T12:40:00Z"
+        },
+        "updatedAt": {
+            "$date": "2025-02-05T13:10:00Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "65b8e221e1b1c25a8b7e4a75"
+        },
+        "name": "Jenkins",
+        "description": "An open-source automation server for continuous integration and continuous delivery (CI/CD).",
+        "justification": "Jenkins is widely used in DevOps pipelines for automating builds, tests, and deployments, but its configuration complexity and maintenance overhead have led to the rise of alternative CI/CD solutions.",
+        "category": "Tools",
+        "ring": "Hold",
+        "published": true,
+        "createdAt": {
+            "$date": "2025-02-05T12:45:00Z"
+        },
+        "updatedAt": {
+            "$date": "2025-02-05T13:15:00Z"
         }
     }
 ]

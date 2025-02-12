@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
-import { Category, Ring, Technology } from '../../models/technology';
+import { Technology } from '../../models/technology';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -26,42 +26,8 @@ import { MatSelectModule } from '@angular/material/select';
 export class TechnologyViewerTabelComponent implements AfterViewInit, OnInit {
   displayedColumns: string[] = ['name', 'category', 'ring', 'description', 'justification'];
   technologies = new MatTableDataSource<Technology>([]);
-  categories: Category[] = [
-    {
-      _id: 'techniques',
-      name: 'Techniques'
-    },
-    {
-      _id: 'platforms',
-      name: 'Platforms'
-    },
-    {
-      _id: 'tools',
-      name: 'Tools'
-    },
-    {
-      _id: 'languages_frameworks',
-      name: 'Languages & Frameworks'
-    }
-  ];
-  rings: Ring[] = [
-    {
-      _id: 'adopt',
-      name: 'Adopt'
-    },
-    {
-      _id: 'trial',
-      name: 'Trial'
-    },
-    {
-      _id: 'assess',
-      name: 'Assess'
-    },
-    {
-      _id: 'hold',
-      name: 'Hold'
-    }
-  ];
+  categories: string[] = ['Techniques', 'Platforms', 'Tools', 'Languages & Frameworks'];
+  rings: string[] = ['Adopt', 'Trial', 'Assess', 'Hold'];
   filterValues = { name: '', categories: [] as string[], rings: [] as string[] };
 
   @ViewChild(MatPaginator)
@@ -83,8 +49,8 @@ export class TechnologyViewerTabelComponent implements AfterViewInit, OnInit {
       const filterObj = JSON.parse(filter);
       const matchesName = data.name.toLowerCase().includes(filterObj.name);
       const matchesCategory =
-        filterObj.categories.length === 0 || filterObj.categories.includes(data.category._id);
-      const matchesRing = filterObj.rings.length === 0 || filterObj.rings.includes(data.ring._id);
+        filterObj.categories.length === 0 || filterObj.categories.includes(data.category);
+      const matchesRing = filterObj.rings.length === 0 || filterObj.rings.includes(data.ring);
       return matchesName && matchesCategory && matchesRing;
     };
   }

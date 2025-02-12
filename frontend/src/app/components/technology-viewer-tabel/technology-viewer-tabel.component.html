@@ -13,7 +13,7 @@
                         <mat-label>Filter Rings</mat-label>
                         <mat-select multiple (selectionChange)="onRingChange($event.value)">
                             @for (ring of rings; track ring) {
-                            <mat-option [value]="ring._id">{{ring.name}}</mat-option>
+                            <mat-option [value]="ring">{{ring}}</mat-option>
                             }
                         </mat-select>
                     </mat-form-field>
@@ -23,7 +23,7 @@
                         <mat-label>Filter Categories</mat-label>
                         <mat-select multiple (selectionChange)="onCategoryChange($event.value)">
                             @for (category of categories; track category) {
-                            <mat-option [value]="category._id">{{category.name}}</mat-option>
+                            <mat-option [value]="category">{{category}}</mat-option>
                             }
                         </mat-select>
                     </mat-form-field>
@@ -40,13 +40,13 @@
                 <!-- Category Column -->
                 <ng-container matColumnDef="category">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Category </th>
-                    <td mat-cell *matCellDef="let element"> {{element.category.name}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.category}} </td>
                 </ng-container>
 
                 <!-- Ring Column -->
                 <ng-container matColumnDef="ring">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Ring </th>
-                    <td mat-cell *matCellDef="let element"> {{element.ring.name}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.ring}} </td>
                 </ng-container>
 
                 <!-- Description Column -->

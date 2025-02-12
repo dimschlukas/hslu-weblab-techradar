@@ -3,9 +3,7 @@ import Technology from '../models/technologyModel.js';
 
 export const getTechnologies = async (req: Request, res: Response): Promise<void> => {
   try {
-    const technologies = await Technology.find()
-      .populate('category', 'name')
-      .populate('ring', 'name');
+    const technologies = await Technology.find();
     res.json(technologies);
   } catch (err) {
     res.status(500).json({ error: 'Server error' });
