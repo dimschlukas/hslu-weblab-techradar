@@ -1,13 +1,13 @@
-<div class="max-w-96 place-self-center p-4">
-    <mat-card appearance="outlined">
-        <mat-card-content>
-            <p class="text-4xl">Add new Technology</p>
-            <div class="h-10 py-2">
-                @if (errorMessage) {
-                <mat-error>{{errorMessage}}</mat-error>
-                }
-            </div>
-            <form [formGroup]="technologyForm" (ngSubmit)="onSubmit()">
+<div class="w-full md:max-w-7xl place-self-center p-4">
+    <p class="text-4xl">Add new Technology</p>
+    <div class="h-10 py-2">
+        @if (errorMessage) {
+        <mat-error>{{errorMessage}}</mat-error>
+        }
+    </div>
+    <form [formGroup]="technologyForm" (ngSubmit)="onSubmit()">
+        <div class="grid grid-cols-1 md:grid-cols-2 md:gap-4">
+            <div>
                 <mat-form-field class="w-full">
                     <mat-label>Name</mat-label>
                     <input type="text" matInput [formControl]="technologyForm.controls.name"
@@ -30,12 +30,14 @@
                 </mat-form-field>
                 <mat-form-field class="w-full">
                     <mat-label>Description</mat-label>
-                    <textarea matInput [formControl]="technologyForm.controls.description"
+                    <textarea rows=5 matInput [formControl]="technologyForm.controls.description"
                         [errorStateMatcher]="matcher"></textarea>
                     @if (technologyForm.controls.description.hasError('required')) {
                     <mat-error>Category is <strong>required</strong></mat-error>
                     }
                 </mat-form-field>
+            </div>
+            <div>
                 <mat-form-field class="w-full">
                     <mat-label>Ring</mat-label>
                     <mat-select [formControl]="technologyForm.controls.ring" [errorStateMatcher]="matcher">
@@ -50,16 +52,16 @@
                 </mat-form-field>
                 <mat-form-field class="w-full">
                     <mat-label>Justification</mat-label>
-                    <textarea matInput [formControl]="technologyForm.controls.justification"
+                    <textarea rows=5 matInput [formControl]="technologyForm.controls.justification"
                         [errorStateMatcher]="matcher"></textarea>
                     @if (technologyForm.controls.justification.hasError('required')) {
                     <mat-error>Category is <strong>required</strong></mat-error>
                     }
                 </mat-form-field>
-                <div class="pt-4">
-                    <button mat-flat-button class="w-full">Save</button>
-                </div>
-            </form>
-        </mat-card-content>
-    </mat-card>
+            </div>
+        </div>
+        <div class="w-full md:w-min md:place-self-end">
+            <button mat-flat-button class="w-full">Save</button>
+        </div>
+    </form>
 </div>
