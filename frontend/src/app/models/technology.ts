@@ -1,8 +1,18 @@
 export interface Technology {
-  id: string;
+  _id: string;
   name: string;
-  ring: string;
-  category: string;
+  ring: Ring;
+  category: Category;
   description: string;
   justification: string;
+}
+
+export interface Ring {
+  _id: string;
+  name: string;
+}
+
+export interface Category {
+  _id: string;
+  name: string;
 }

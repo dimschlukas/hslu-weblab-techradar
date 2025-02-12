@@ -52,7 +52,7 @@ export class CreateTechnologyFormComponent {
       return;
     }
 
-    const formData = this.technologyForm.value as Technology;
+    const formData = this.technologyForm.value as unknown as Technology;
     console.log(formData);
     this.TechnologiesService.addTechnology(formData).subscribe(() => this.location.back());
   }
