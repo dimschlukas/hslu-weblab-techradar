@@ -41,7 +41,7 @@ import { Router } from '@angular/router';
   styleUrl: './technology-viewer-tabel.component.scss'
 })
 export class TechnologyViewerTabelComponent implements AfterViewInit, OnInit {
-  displayedColumns: string[] = ['name', 'category', 'ring', 'description', 'justification', 'edit'];
+  displayedColumns: string[] = [];
   technologies = new MatTableDataSource<Technology>([]);
   categories: string[] = ['Techniques', 'Platforms', 'Tools', 'Languages & Frameworks'];
   rings: string[] = ['Adopt', 'Trial', 'Assess', 'Hold'];
@@ -61,6 +61,21 @@ export class TechnologyViewerTabelComponent implements AfterViewInit, OnInit {
   ) {}
   ngOnInit(): void {
     this.getTechnologies();
+
+    this.breakpointObserver.observe(['(max-width: 750px)']).subscribe((result) => {
+      if (result.matches) {
+        this.displayedColumns = ['name', 'category', 'ring'];
+      } else {
+        this.displayedColumns = [
+          'name',
+          'category',
+          'ring',
+          'description',
+          'justification',
+          'edit'
+        ];
+      }
+    });
   }
 
   ngAfterViewInit() {

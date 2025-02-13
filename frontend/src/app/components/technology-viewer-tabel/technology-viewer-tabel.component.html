@@ -1,85 +1,86 @@
 <div class="w-full md:max-w-7xl place-self-center p-4">
     <mat-card appearance="outlined">
         <mat-card-content>
-            <div class="flex justify-end space-x-4">
-                <div>
-                    <div class="w-40">
-                        <button mat-flat-button (click)="addTechnologies()">Add Technology</button>
+            <div class="flex flex-col md:flex-row md:justify-between">
+                <div class="w-full pb-4 md:w-40">
+                    <button mat-flat-button (click)="addTechnologies()" class="w-full">Add Technology</button>
+                </div>
+                <div class="flex flex-col md:flex-row md:gap-4">
+                    <div class="md:w-40 lg:w-56">
+                        <mat-form-field class="w-full">
+                            <mat-label>Search Name</mat-label>
+                            <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+                        </mat-form-field>
+                    </div>
+                    <div class="md:w-40 lg:w-56">
+                        <mat-form-field class="w-full">
+                            <mat-label>Filter Rings</mat-label>
+                            <mat-select multiple (selectionChange)="onRingChange($event.value)">
+                                @for (ring of rings; track ring) {
+                                <mat-option [value]="ring">{{ring}}</mat-option>
+                                }
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="md:w-40 lg:w-56">
+                        <mat-form-field class="w-full">
+                            <mat-label>Filter Categories</mat-label>
+                            <mat-select multiple (selectionChange)="onCategoryChange($event.value)">
+                                @for (category of categories; track category) {
+                                <mat-option [value]="category">{{category}}</mat-option>
+                                }
+                            </mat-select>
+                        </mat-form-field>
                     </div>
                 </div>
-                <div class="w-full"></div>
-                <div>
-                    <mat-form-field>
-                        <mat-label>Search Name</mat-label>
-                        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
-                    </mat-form-field>
-                </div>
-                <div>
-                    <mat-form-field>
-                        <mat-label>Filter Rings</mat-label>
-                        <mat-select multiple (selectionChange)="onRingChange($event.value)">
-                            @for (ring of rings; track ring) {
-                            <mat-option [value]="ring">{{ring}}</mat-option>
-                            }
-                        </mat-select>
-                    </mat-form-field>
-                </div>
-                <div>
-                    <mat-form-field>
-                        <mat-label>Filter Categories</mat-label>
-                        <mat-select multiple (selectionChange)="onCategoryChange($event.value)">
-                            @for (category of categories; track category) {
-                            <mat-option [value]="category">{{category}}</mat-option>
-                            }
-                        </mat-select>
-                    </mat-form-field>
-                </div>
             </div>
-            <table mat-table matSort [dataSource]="technologies" matSortActive="name" matSortDirection="asc">
+            <div class="overflow-auto">
+                <table mat-table matSort [dataSource]="technologies" matSortActive="name" matSortDirection="asc">
 
-                <!-- Name Column -->
-                <ng-container matColumnDef="name">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-                </ng-container>
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                    </ng-container>
 
-                <!-- Category Column -->
-                <ng-container matColumnDef="category">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Category </th>
-                    <td mat-cell *matCellDef="let element"> {{element.category}} </td>
-                </ng-container>
+                    <!-- Category Column -->
+                    <ng-container matColumnDef="category">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Category </th>
+                        <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+                    </ng-container>
 
-                <!-- Ring Column -->
-                <ng-container matColumnDef="ring">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Ring </th>
-                    <td mat-cell *matCellDef="let element"> {{element.ring}} </td>
-                </ng-container>
+                    <!-- Ring Column -->
+                    <ng-container matColumnDef="ring">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Ring </th>
+                        <td mat-cell *matCellDef="let element"> {{element.ring}} </td>
+                    </ng-container>
 
-                <!-- Description Column -->
-                <ng-container matColumnDef="description">
-                    <th mat-header-cell *matHeaderCellDef> Description </th>
-                    <td mat-cell *matCellDef="let element"> {{element.description}} </td>
-                </ng-container>
+                    <!-- Description Column -->
+                    <ng-container matColumnDef="description">
+                        <th mat-header-cell *matHeaderCellDef> Description </th>
+                        <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+                    </ng-container>
 
-                <!-- Justification Column -->
-                <ng-container matColumnDef="justification">
-                    <th mat-header-cell *matHeaderCellDef> Justification </th>
-                    <td mat-cell *matCellDef="let element"> {{element.justification}} </td>
-                </ng-container>
+                    <!-- Justification Column -->
+                    <ng-container matColumnDef="justification">
+                        <th mat-header-cell *matHeaderCellDef> Justification </th>
+                        <td mat-cell *matCellDef="let element"> {{element.justification}} </td>
+                    </ng-container>
 
-                <!-- Admin Actions Column -->
-                <ng-container matColumnDef="edit">
-                    <th mat-header-cell *matHeaderCellDef> Edit </th>
-                    <td mat-cell *matCellDef="let element">
-                        <button mat-icon-button matTooltip="Click to Edit" class="iconbutton" color="primary"
-                            (click)="editTechnologies(element)">
-                            <mat-icon>edit</mat-icon>
-                        </button>
-                    </td>
-                </ng-container>
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-            </table>
+                    <!-- Admin Actions Column -->
+                    <ng-container matColumnDef="edit">
+                        <th mat-header-cell *matHeaderCellDef> Edit </th>
+                        <td mat-cell *matCellDef="let element">
+                            <button mat-icon-button matTooltip="Click to Edit" class="iconbutton" color="primary"
+                                (click)="editTechnologies(element)">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                        </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+            </div>
             <mat-paginator [pageSizeOptions]="[20, 50, 100]" showFirstLastButtons
                 aria-label="Select page of periodic elements">
             </mat-paginator>
