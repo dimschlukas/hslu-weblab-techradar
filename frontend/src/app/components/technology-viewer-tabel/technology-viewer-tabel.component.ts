@@ -16,8 +16,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MatDialog } from '@angular/material/dialog';
 import { AddTechnologyDialogComponent } from '../../dialogs/add-technology-dialog/add-technology-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-technology-viewer-tabel',
@@ -52,7 +54,11 @@ export class TechnologyViewerTabelComponent implements AfterViewInit, OnInit {
   @ViewChild(MatSort)
   sort: MatSort = new MatSort();
 
-  constructor(private technologiesService: TechnologiesService) {}
+  constructor(
+    private technologiesService: TechnologiesService,
+    private breakpointObserver: BreakpointObserver,
+    private router: Router
+  ) {}
   ngOnInit(): void {
     this.getTechnologies();
   }
@@ -95,7 +101,13 @@ export class TechnologyViewerTabelComponent implements AfterViewInit, OnInit {
     this.openDialog(technology);
   }
   addTechnologies() {
-    this.openAddDialog();
+    if (this.breakpointObserver.isMatched([Breakpoints.Handset])) {
+      // Mobile: Navigate to a new page
+      this.router.navigate(['/admin/add-technology']);
+    } else {
+      // Desktop: Open a dialog
+      this.openAddDialog();
+    }
   }
 
   openDialog(initialData: Technology) {
