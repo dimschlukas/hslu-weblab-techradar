@@ -1,5 +1,10 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { AfterViewInit, Component, inject, OnInit, ViewChild } from '@angular/core';
+import {
+  MatTableDataSource,
+  MatTableModule,
+  MatCell,
+  MatHeaderCell
+} from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 import { Technology } from '../../models/technology';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
@@ -8,6 +13,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { TechnologiesService } from '../../shared/services/technologies/technologies.service';
 import { MatSelectModule } from '@angular/material/select';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatDialog } from '@angular/material/dialog';
+import { AddTechnologyDialogComponent } from '../../dialogs/add-technology-dialog/add-technology-dialog.component';
 
 @Component({
   selector: 'app-technology-viewer-tabel',
@@ -18,17 +28,23 @@ import { MatSelectModule } from '@angular/material/select';
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatCell,
+    MatHeaderCell,
+    MatIconModule,
+    MatButtonModule,
+    MatSidenavModule
   ],
   templateUrl: './technology-viewer-tabel.component.html',
   styleUrl: './technology-viewer-tabel.component.scss'
 })
 export class TechnologyViewerTabelComponent implements AfterViewInit, OnInit {
-  displayedColumns: string[] = ['name', 'category', 'ring', 'description', 'justification'];
+  displayedColumns: string[] = ['name', 'category', 'ring', 'description', 'justification', 'edit'];
   technologies = new MatTableDataSource<Technology>([]);
   categories: string[] = ['Techniques', 'Platforms', 'Tools', 'Languages & Frameworks'];
   rings: string[] = ['Adopt', 'Trial', 'Assess', 'Hold'];
   filterValues = { name: '', categories: [] as string[], rings: [] as string[] };
+  readonly dialog = inject(MatDialog);
 
   @ViewChild(MatPaginator)
   paginator: MatPaginator = new MatPaginator();
@@ -73,5 +89,20 @@ export class TechnologyViewerTabelComponent implements AfterViewInit, OnInit {
 
   getTechnologies() {
     this.technologiesService.getTechnologies().subscribe((data) => (this.technologies.data = data));
+  }
+
+  editTechnologies(technology: Technology) {
+    this.openDialog(technology);
+  }
+
+  openDialog(initialData: Technology) {
+    const dialogRef = this.dialog.open(AddTechnologyDialogComponent, {
+      data: initialData,
+      maxWidth: '100vw'
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 }
