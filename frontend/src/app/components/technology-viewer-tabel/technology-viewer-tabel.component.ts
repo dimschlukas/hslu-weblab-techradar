@@ -94,6 +94,9 @@ export class TechnologyViewerTabelComponent implements AfterViewInit, OnInit {
   editTechnologies(technology: Technology) {
     this.openDialog(technology);
   }
+  addTechnologies() {
+    this.openAddDialog();
+  }
 
   openDialog(initialData: Technology) {
     const dialogRef = this.dialog.open(AddTechnologyDialogComponent, {
@@ -103,6 +106,21 @@ export class TechnologyViewerTabelComponent implements AfterViewInit, OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  openAddDialog() {
+    const dialogRef = this.dialog.open<AddTechnologyDialogComponent, any, Technology>(
+      AddTechnologyDialogComponent,
+      {
+        maxWidth: '100vw'
+      }
+    );
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.technologies.data = [...this.technologies.data, result];
+      }
     });
   }
 }

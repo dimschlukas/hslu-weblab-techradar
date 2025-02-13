@@ -3,6 +3,12 @@
         <mat-card-content>
             <div class="flex justify-end space-x-4">
                 <div>
+                    <div class="w-40">
+                        <button mat-flat-button (click)="addTechnologies()">Add Technology</button>
+                    </div>
+                </div>
+                <div class="w-full"></div>
+                <div>
                     <mat-form-field>
                         <mat-label>Search Name</mat-label>
                         <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
@@ -29,7 +35,7 @@
                     </mat-form-field>
                 </div>
             </div>
-            <table mat-table matSort [dataSource]="technologies">
+            <table mat-table matSort [dataSource]="technologies" matSortActive="name" matSortDirection="asc">
 
                 <!-- Name Column -->
                 <ng-container matColumnDef="name">

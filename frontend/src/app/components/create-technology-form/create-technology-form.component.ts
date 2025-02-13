@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Location } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import {
@@ -34,6 +34,7 @@ import { TechnologiesService } from '../../shared/services/technologies/technolo
 })
 export class CreateTechnologyFormComponent implements OnInit {
   @Input() initialData!: Technology;
+  @Output() formSubmit = new EventEmitter<Technology>();
   errorMessage: string | null = null;
   matcher = new MyErrorStateMatcher();
   technologyForm = new FormGroup({
@@ -56,7 +57,14 @@ export class CreateTechnologyFormComponent implements OnInit {
 
     const formData = this.technologyForm.value as Technology;
     console.log(formData);
-    this.TechnologiesService.addTechnology(formData).subscribe(() => this.location.back());
+    this.TechnologiesService.addTechnology(formData).subscribe({
+      next: (technology) => {
+        this.formSubmit.emit(technology);
+      },
+      error: (error: Error) => {
+        this.errorMessage = error.message;
+      }
+    });
   }
 }
 

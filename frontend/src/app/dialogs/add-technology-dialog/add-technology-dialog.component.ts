@@ -14,4 +14,8 @@ export class AddTechnologyDialogComponent {
     public dialogRef: MatDialogRef<AddTechnologyDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Technology
   ) {}
+
+  handleFormSubmit(formData: Technology) {
+    this.dialogRef.close(formData);
+  }
 }
