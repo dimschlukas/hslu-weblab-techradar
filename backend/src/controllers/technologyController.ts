@@ -26,6 +26,15 @@ export const getTechnology = async (req: Request, res: Response): Promise<void> 
 export const createTechnology = async (req: Request, res: Response): Promise<void> => {
   try {
     const technology = new Technology(req.body);
+
+    const technologyExists = await Technology.findOne({
+      name: { $regex: technology.name, $options: 'i' }
+    });
+
+    if (technologyExists) {
+      res.status(400).json({ message: 'Technology already exists' });
+      return;
+    }
     await technology.save();
     res.status(201).json(technology);
   } catch (err) {
