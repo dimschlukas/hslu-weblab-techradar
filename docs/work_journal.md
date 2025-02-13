@@ -40,4 +40,14 @@
 - Add CRUD backend api operations for technologies
 - Create form for adding new technologies
 
-**Total: 27h**
+## 2025-02-12 (8h)
+
+- Add tabular view of technologies (Viewer)
+- Add Filtering and search on table
+- Simplify the datastructure on the db for easier filtering and handling technologies
+  - Should have not started with a too detailed db structure, if a simple db structur gets the job done as well. (KISS)
+- Get technologies from backend via api call
+- Reuse technology creation form for editing technologies (Some logic still missing --> WIP)
+- Add edit button to table and use dialogs for editing technologies.
+
+**Total: 35h**
