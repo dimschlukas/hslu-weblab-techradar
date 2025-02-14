@@ -12,6 +12,7 @@ export const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [authGuard] },
   { path: 'login', component: LoginComponent, canActivate: [loggedInAuthGuard] },
   { path: 'register', component: RegisterComponent, canActivate: [loggedInAuthGuard] },
+  { path: 'admin', component: AdministrationComponent, canActivate: [adminAuthGuard] },
   {
     path: 'admin/add-technology',
     component: AddTechnologyComponent,

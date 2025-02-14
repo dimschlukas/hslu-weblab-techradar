@@ -1,17 +1,16 @@
 <mat-toolbar>
-    <button mat-icon-button class="menu-icon" aria-label="Menu icon-button">
-        <mat-icon>menu</mat-icon>
-    </button>
-    <span>{{title}}</span>
+    <span routerLink="/">{{title}}</span>
     <span class="titlebar-spacer"></span>
+    @if (isLoggedInAsAdmin()) {
+    <mat-slide-toggle labelPosition="before" matTooltip="Activate Admin Console" (change)="navigate($event.checked)"
+        [checked]="adminActivated">
+        Admin Console
+    </mat-slide-toggle>
+    }
     @if (isLoggedIn()) {
     <button mat-icon-button aria-label="Logout icon-button" matTooltip="Logout" (click)="logout()">
         <mat-icon>logout</mat-icon>
     </button>
     }
 </mat-toolbar>
-<nav>
-    <a routerLink="/dashboard">Dashboard</a>
-    <a routerLink="/admin/add-technology">Admin</a>
-</nav>
 <router-outlet></router-outlet>

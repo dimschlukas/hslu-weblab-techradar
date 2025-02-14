@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { CreateTechnologyFormComponent } from '../../components/create-technology-form/create-technology-form.component';
+import { TechnologyViewerTabelComponent } from '../../components/technology-viewer-tabel/technology-viewer-tabel.component';
 
 @Component({
   selector: 'app-administration',
-  imports: [CreateTechnologyFormComponent],
+  imports: [TechnologyViewerTabelComponent],
   templateUrl: './administration.component.html',
   styleUrl: './administration.component.scss'
 })
