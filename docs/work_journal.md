@@ -50,4 +50,10 @@
 - Reuse technology creation form for editing technologies (Some logic still missing --> WIP)
 - Add edit button to table and use dialogs for editing technologies.
 
-**Total: 35h**
+## 2025-02-13 (4h)
+
+- Finish add-technology-dialog
+- Add responsive design for technology table for mobile and desktop
+- Finish routing between admin console and dashboard
+
+**Total: 39h**
