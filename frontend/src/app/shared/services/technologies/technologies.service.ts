@@ -28,6 +28,14 @@ export class TechnologiesService {
       .pipe(catchError(this.handleError));
   }
 
+  updateTechnology(technology: Technology): Observable<Technology> {
+    return this.http
+      .put<Technology>(`${this.url}/${technology._id}`, technology, {
+        withCredentials: true
+      })
+      .pipe(catchError(this.handleError));
+  }
+
   private handleError(error: HttpErrorResponse): Observable<never> {
     let errorMessage = 'Something went wrong. Please try again later.';
 

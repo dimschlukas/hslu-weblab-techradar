@@ -5,4 +5,8 @@ export interface Technology {
   category: string;
   description: string;
   justification: string;
+  published: boolean;
+  publishedAt: Date;
+  createdAt: Date;
+  updatedAt: Date;
 }

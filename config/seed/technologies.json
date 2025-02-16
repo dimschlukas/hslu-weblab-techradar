@@ -9,6 +9,9 @@
         "category": "Platforms",
         "ring": "Assess",
         "published": true,
+        "publishedAt": {
+            "$date": "2025-02-05T12:10:00Z"
+        },
         "createdAt": {
             "$date": "2025-02-05T12:10:00Z"
         },
@@ -25,7 +28,7 @@
         "justification": "Rust is gaining traction for performance-critical applications, offering safety guarantees that help prevent memory errors and concurrency issues, making it a strong candidate for adoption in system-level programming.",
         "category": "Languages & Frameworks",
         "ring": "Trial",
-        "published": true,
+        "published": false,
         "createdAt": {
             "$date": "2025-02-05T12:15:00Z"
         },
@@ -43,6 +46,9 @@
         "category": "Techniques",
         "ring": "Adopt",
         "published": true,
+        "publishedAt": {
+            "$date": "2025-02-05T12:20:00Z"
+        },
         "createdAt": {
             "$date": "2025-02-05T12:20:00Z"
         },
@@ -59,7 +65,7 @@
         "justification": "Turborepo significantly improves build performance in monorepo projects by caching and parallelizing tasks, making it an attractive choice for teams working with large-scale JavaScript projects.",
         "category": "Tools",
         "ring": "Trial",
-        "published": true,
+        "published": false,
         "createdAt": {
             "$date": "2025-02-05T12:25:00Z"
         },
@@ -77,6 +83,9 @@
         "category": "Platforms",
         "ring": "Adopt",
         "published": true,
+        "publishedAt": {
+            "$date": "2025-02-05T12:30:00Z"
+        },
         "createdAt": {
             "$date": "2025-02-05T12:30:00Z"
         },
@@ -94,6 +103,9 @@
         "category": "Techniques",
         "ring": "Trial",
         "published": true,
+        "publishedAt": {
+            "$date": "2025-02-05T12:35:00Z"
+        },
         "createdAt": {
             "$date": "2025-02-05T12:35:00Z"
         },
@@ -111,6 +123,9 @@
         "category": "Languages & Frameworks",
         "ring": "Trial",
         "published": true,
+        "publishedAt": {
+            "$date": "2025-02-05T12:40:00Z"
+        },
         "createdAt": {
             "$date": "2025-02-05T12:40:00Z"
         },
@@ -128,6 +143,9 @@
         "category": "Tools",
         "ring": "Hold",
         "published": true,
+        "publishedAt": {
+            "$date": "2025-02-05T12:45:00Z"
+        },
         "createdAt": {
             "$date": "2025-02-05T12:45:00Z"
         },

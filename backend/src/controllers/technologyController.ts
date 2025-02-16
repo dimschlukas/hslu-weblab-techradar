@@ -35,6 +35,11 @@ export const createTechnology = async (req: Request, res: Response): Promise<voi
       res.status(400).json({ message: 'Technology already exists' });
       return;
     }
+
+    if (technology.published) {
+      technology.publishedAt = new Date();
+    }
+
     await technology.save();
     res.status(201).json(technology);
   } catch (err) {
@@ -49,6 +54,12 @@ export const updateTechnology = async (req: Request, res: Response): Promise<voi
       res.status(404).json({ message: `Technology not found` });
       return;
     }
+
+    if (technology.published && !technology.publishedAt) {
+      technology.publishedAt = new Date();
+    }
+
+    await technology.save();
     res.status(200).json(technology);
   } catch (err) {
     res.status(400).json({ message: 'Invalid data' });

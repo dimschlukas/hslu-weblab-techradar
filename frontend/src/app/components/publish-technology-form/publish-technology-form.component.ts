@@ -20,7 +20,7 @@ import { TechnologiesService } from '../../shared/services/technologies/technolo
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @Component({
-  selector: 'app-create-technology-form',
+  selector: 'app-publish-technology-form',
   imports: [
     RouterModule,
     ReactiveFormsModule,
@@ -31,51 +31,32 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatSelectModule,
     MatSlideToggleModule
   ],
-  templateUrl: './create-technology-form.component.html',
-  styleUrl: './create-technology-form.component.scss'
+  templateUrl: './publish-technology-form.component.html',
+  styleUrl: './publish-technology-form.component.scss'
 })
-export class CreateTechnologyFormComponent implements OnInit {
+export class PublishTechnologyFormComponent implements OnInit {
   @Input() initialData!: Technology;
   @Output() formSubmit = new EventEmitter<Technology>();
   errorMessage: string | null = null;
   matcher = new MyErrorStateMatcher();
   technologyForm = new FormGroup({
-    name: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
-    category: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
     ring: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
-    description: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
-    justification: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
-    published: new FormControl(true)
+    justification: new FormControl('', { nonNullable: true, validators: [Validators.required] })
   });
 
   constructor(private TechnologiesService: TechnologiesService, private location: Location) {}
   ngOnInit(): void {
     this.technologyForm.patchValue(this.initialData);
-    this.technologyForm.get('published')?.valueChanges.subscribe((active) => {
-      const ringControl = this.technologyForm.get('ring');
-      const justificationControl = this.technologyForm.get('justification');
-
-      if (active) {
-        ringControl?.setValidators(Validators.required);
-        justificationControl?.setValidators(Validators.required);
-      } else {
-        ringControl?.clearValidators();
-        justificationControl?.clearValidators();
-      }
-
-      ringControl?.updateValueAndValidity();
-      justificationControl?.updateValueAndValidity();
-    });
   }
 
   onSubmit() {
     if (this.technologyForm.invalid) {
       return;
     }
-
     const formData = this.technologyForm.value as Technology;
-    console.log(formData);
-    this.TechnologiesService.addTechnology(formData).subscribe({
+    formData._id = this.initialData._id;
+    formData.published = true;
+    this.TechnologiesService.updateTechnology(formData).subscribe({
       next: (technology) => {
         this.formSubmit.emit(technology);
       },

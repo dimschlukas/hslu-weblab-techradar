@@ -1,0 +1,38 @@
+<div class="w-full md:max-w-2xl place-self-center p-4 max-h-[90vh] overflow-y-auto">
+    <p class="text-4xl">Publish Technology</p>
+    <p class="text-3xl">{{initialData.name}}</p>
+    <div class="h-10 py-2">
+        @if (errorMessage) {
+        <mat-error>{{errorMessage}}</mat-error>
+        }
+    </div>
+    <form [formGroup]="technologyForm" (ngSubmit)="onSubmit()">
+        <div class="grid grid-cols-1">
+            <div>
+                <mat-form-field class="w-full">
+                    <mat-label>Ring</mat-label>
+                    <mat-select [formControl]="technologyForm.controls.ring" [errorStateMatcher]="matcher">
+                        <mat-option value="Adopt">Adopt</mat-option>
+                        <mat-option value="Trial">Trial</mat-option>
+                        <mat-option value="Assess">Assess</mat-option>
+                        <mat-option value="Hold">Hold</mat-option>
+                    </mat-select>
+                    @if (technologyForm.controls.ring.hasError('required')) {
+                    <mat-error>Ring is <strong>required</strong></mat-error>
+                    }
+                </mat-form-field>
+                <mat-form-field class="w-full">
+                    <mat-label>Justification</mat-label>
+                    <textarea rows=5 matInput [formControl]="technologyForm.controls.justification"
+                        [errorStateMatcher]="matcher"></textarea>
+                    @if (technologyForm.controls.justification.hasError('required')) {
+                    <mat-error>Category is <strong>required</strong></mat-error>
+                    }
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="w-full md:w-min md:place-self-end">
+            <button mat-flat-button class="w-full">Publish</button>
+        </div>
+    </form>
+</div>

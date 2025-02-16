@@ -20,6 +20,9 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MatDialog } from '@angular/material/dialog';
 import { AddTechnologyDialogComponent } from '../../dialogs/add-technology-dialog/add-technology-dialog.component';
 import { Router } from '@angular/router';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatMenuModule } from '@angular/material/menu';
+import { PublishTechnologyDialogComponent } from '../../dialogs/publish-technology-dialog/publish-technology-dialog.component';
 
 @Component({
   selector: 'app-technology-viewer-tabel',
@@ -35,7 +38,9 @@ import { Router } from '@angular/router';
     MatHeaderCell,
     MatIconModule,
     MatButtonModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatChipsModule,
+    MatMenuModule
   ],
   templateUrl: './technology-viewer-tabel.component.html',
   styleUrl: './technology-viewer-tabel.component.scss'
@@ -115,6 +120,11 @@ export class TechnologyViewerTabelComponent implements AfterViewInit, OnInit {
   editTechnologies(technology: Technology) {
     this.openDialog(technology);
   }
+
+  publishTechnology(technology: Technology) {
+    this.openPublishDialog(technology);
+  }
+
   addTechnologies() {
     if (this.breakpointObserver.isMatched([Breakpoints.Handset])) {
       // Mobile: Navigate to a new page
@@ -147,6 +157,26 @@ export class TechnologyViewerTabelComponent implements AfterViewInit, OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.technologies.data = [...this.technologies.data, result];
+      }
+    });
+  }
+
+  openPublishDialog(initialData: Technology) {
+    const dialogRef = this.dialog.open<PublishTechnologyDialogComponent, any, Technology>(
+      PublishTechnologyDialogComponent,
+      {
+        data: initialData,
+        maxWidth: '100vw'
+      }
+    );
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        const index = this.technologies.data.findIndex((t) => t._id === result._id);
+        if (index !== -1) {
+          this.technologies.data[index] = result;
+          this.technologies.data = [...this.technologies.data];
+        }
       }
     });
   }
