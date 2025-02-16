@@ -88,6 +88,13 @@ export class TechnologyViewerTabelComponent implements AfterViewInit, OnInit {
     this.technologies.paginator = this.paginator;
     this.technologies.sort = this.sort;
 
+    this.technologies.sortingDataAccessor = (data: any, sortHeaderId: string): string => {
+      if (typeof data[sortHeaderId] === 'string') {
+        return data[sortHeaderId].toLocaleLowerCase();
+      }
+      return data[sortHeaderId];
+    };
+
     this.technologies.filterPredicate = function (data, filter: string): boolean {
       const filterObj = JSON.parse(filter);
       const matchesName = data.name.toLowerCase().includes(filterObj.name);
