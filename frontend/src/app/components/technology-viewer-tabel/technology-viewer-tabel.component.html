@@ -82,7 +82,7 @@
                                     <mat-icon>more_vert</mat-icon>
                                 </button>
                                 <mat-menu #menu="matMenu">
-                                    <button mat-menu-item>Edit Technology</button>
+                                    <button mat-menu-item (click)="editTechnology(element)">Edit Technology</button>
                                     <button mat-menu-item>Edit Ring &
                                         Justification</button>
                                     @if (!element.published) {

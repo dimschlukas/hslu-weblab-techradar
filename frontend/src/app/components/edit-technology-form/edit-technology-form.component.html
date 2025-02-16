@@ -1,0 +1,46 @@
+<div class="w-full md:max-w-2xl place-self-center p-4 max-h-[90vh] overflow-y-auto">
+    <p class="text-4xl">Edit Technology</p>
+    <p class="text-3xl">{{initialData.name}}</p>
+    <div class="h-10 py-2">
+        @if (errorMessage) {
+        <mat-error>{{errorMessage}}</mat-error>
+        }
+    </div>
+    <form [formGroup]="technologyForm" (ngSubmit)="onSubmit()">
+        <div class="grid grid-cols-1">
+            <div>
+                <mat-form-field class="w-full">
+                    <mat-label>Name</mat-label>
+                    <input type="text" matInput [formControl]="technologyForm.controls.name"
+                        [errorStateMatcher]="matcher" />
+                    @if (technologyForm.controls.name.hasError('required')) {
+                    <mat-error>Name is <strong>required</strong></mat-error>
+                    }
+                </mat-form-field>
+                <mat-form-field class="w-full">
+                    <mat-label>Category</mat-label>
+                    <mat-select [formControl]="technologyForm.controls.category" [errorStateMatcher]="matcher">
+                        <mat-option value="Techniques">Techniques</mat-option>
+                        <mat-option value="Platforms">Platforms</mat-option>
+                        <mat-option value="Tools">Tools</mat-option>
+                        <mat-option value="Languages & Frameworks">Languages & Frameworks</mat-option>
+                    </mat-select>
+                    @if (technologyForm.controls.category.hasError('required')) {
+                    <mat-error>Category is <strong>required</strong></mat-error>
+                    }
+                </mat-form-field>
+                <mat-form-field class="w-full">
+                    <mat-label>Description</mat-label>
+                    <textarea rows=5 matInput [formControl]="technologyForm.controls.description"
+                        [errorStateMatcher]="matcher"></textarea>
+                    @if (technologyForm.controls.description.hasError('required')) {
+                    <mat-error>Category is <strong>required</strong></mat-error>
+                    }
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="w-full md:w-min md:place-self-end">
+            <button mat-flat-button class="w-full">Save</button>
+        </div>
+    </form>
+</div>

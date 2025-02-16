@@ -23,6 +23,7 @@ import { Router } from '@angular/router';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatMenuModule } from '@angular/material/menu';
 import { PublishTechnologyDialogComponent } from '../../dialogs/publish-technology-dialog/publish-technology-dialog.component';
+import { EditTechnologyDialogComponent } from '../../dialogs/edit-technolgy-dialog/edit-technology-dialog.component';
 
 @Component({
   selector: 'app-technology-viewer-tabel',
@@ -117,8 +118,8 @@ export class TechnologyViewerTabelComponent implements AfterViewInit, OnInit {
     this.technologiesService.getTechnologies().subscribe((data) => (this.technologies.data = data));
   }
 
-  editTechnologies(technology: Technology) {
-    this.openDialog(technology);
+  editTechnology(technology: Technology) {
+    this.openEditDialog(technology);
   }
 
   publishTechnology(technology: Technology) {
@@ -164,6 +165,26 @@ export class TechnologyViewerTabelComponent implements AfterViewInit, OnInit {
   openPublishDialog(initialData: Technology) {
     const dialogRef = this.dialog.open<PublishTechnologyDialogComponent, any, Technology>(
       PublishTechnologyDialogComponent,
+      {
+        data: initialData,
+        maxWidth: '100vw'
+      }
+    );
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        const index = this.technologies.data.findIndex((t) => t._id === result._id);
+        if (index !== -1) {
+          this.technologies.data[index] = result;
+          this.technologies.data = [...this.technologies.data];
+        }
+      }
+    });
+  }
+
+  openEditDialog(initialData: Technology) {
+    const dialogRef = this.dialog.open<EditTechnologyDialogComponent, any, Technology>(
+      EditTechnologyDialogComponent,
       {
         data: initialData,
         maxWidth: '100vw'
