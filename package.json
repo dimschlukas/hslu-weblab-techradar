@@ -8,8 +8,8 @@
     "dev:backend": "cd backend && npm run dev",
     "dev:frontend": "cd frontend && npm start",
     "install:all": "cd backend && npm ci && cd ../frontend && npm ci",
-    "start:database": "cd config && docker compose up -d",
-    "stop:database": "cd config && docker compose down"
+    "start:database": "cd database && docker compose up -d",
+    "stop:database": "cd database && docker compose down"
   },
   "devDependencies": {
     "concurrently": "^8.0.0"
