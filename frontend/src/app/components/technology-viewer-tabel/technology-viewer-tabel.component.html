@@ -83,8 +83,8 @@
                                 </button>
                                 <mat-menu #menu="matMenu">
                                     <button mat-menu-item (click)="editTechnology(element)">Edit Technology</button>
-                                    <button mat-menu-item>Edit Ring &
-                                        Justification</button>
+                                    <button mat-menu-item (click)="editClassification(element)">Edit
+                                        Classification</button>
                                     @if (!element.published) {
                                     <button mat-menu-item (click)="publishTechnology(element)">Publish</button>
                                     }

@@ -129,6 +129,10 @@ export class TechnologyViewerTabelComponent implements AfterViewInit, OnInit {
     this.openEditDialog(technology);
   }
 
+  editClassification(technology: Technology) {
+    this.openEditClassificationDialog(technology);
+  }
+
   publishTechnology(technology: Technology) {
     this.openPublishDialog(technology);
   }
@@ -141,17 +145,6 @@ export class TechnologyViewerTabelComponent implements AfterViewInit, OnInit {
       // Desktop: Open a dialog
       this.openAddDialog();
     }
-  }
-
-  openDialog(initialData: Technology) {
-    const dialogRef = this.dialog.open(AddTechnologyDialogComponent, {
-      data: initialData,
-      maxWidth: '100vw'
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
-    });
   }
 
   openAddDialog() {
@@ -200,6 +193,31 @@ export class TechnologyViewerTabelComponent implements AfterViewInit, OnInit {
       EditTechnologyDialogComponent,
       {
         data: initialData,
+        maxWidth: '100vw'
+      }
+    );
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        const index = this.technologies.data.findIndex((t) => t._id === result._id);
+        if (index !== -1) {
+          this.technologies.data[index] = result;
+          this.technologies.data = [...this.technologies.data];
+        }
+      }
+    });
+  }
+
+  openEditClassificationDialog(initialData: Technology) {
+    const initialDataCopy = { ...initialData };
+    const dialogRef = this.dialog.open<EditClassificationDialogComponent, any, Technology>(
+      EditClassificationDialogComponent,
+      {
+        data: {
+          initialData: initialDataCopy,
+          formTitle: 'Edit Classification',
+          formButtonText: 'Save'
+        },
         maxWidth: '100vw'
       }
     );
