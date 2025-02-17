@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  database:
+    extends:
+      file: ./config/docker-compose.yml
+      service: mongo
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: backend
+    ports:
+      - '3000:3000'
+    env_file: './backend/.env'
+    depends_on:
+      - database
+    volumes:
+      - ./backend:/usr/src/app
+      - /usr/src/app/node_modules
+    command: npm run start
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frontend
+    ports:
+      - '4200:4200'
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/usr/src/app
+      - /usr/src/app/node_modules
