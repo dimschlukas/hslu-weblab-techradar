@@ -64,4 +64,9 @@
 - Let the admin edit technologies
 - Fix case sensitive sorting of tabular view
 
-**Total: 44h**
+# 2025-02-17 (3h)
+
+- Cleanup project and do some chores
+- Lets the admin edit classifications of a technology
+
+**Total: 47h**
