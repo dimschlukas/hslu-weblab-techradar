@@ -20,7 +20,7 @@ import { TechnologiesService } from '../../shared/services/technologies/technolo
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @Component({
-  selector: 'app-publish-technology-form',
+  selector: 'app-edit-classification-form',
   imports: [
     RouterModule,
     ReactiveFormsModule,
@@ -31,10 +31,12 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatSelectModule,
     MatSlideToggleModule
   ],
-  templateUrl: './publish-technology-form.component.html',
-  styleUrl: './publish-technology-form.component.scss'
+  templateUrl: './edit-classification-form.component.html',
+  styleUrl: './edit-classification-form.component.scss'
 })
-export class PublishTechnologyFormComponent implements OnInit {
+export class EditClassificationFormComponent implements OnInit {
+  @Input() formTitle!: string;
+  @Input() formButtonText!: string;
   @Input() initialData!: Technology;
   @Output() formSubmit = new EventEmitter<Technology>();
   errorMessage: string | null = null;
@@ -53,9 +55,7 @@ export class PublishTechnologyFormComponent implements OnInit {
     if (this.technologyForm.invalid) {
       return;
     }
-    const formData = this.technologyForm.value as Technology;
-    formData._id = this.initialData._id;
-    formData.published = true;
+    const formData = { ...this.initialData, ...this.technologyForm.value };
     this.TechnologiesService.updateTechnology(formData).subscribe({
       next: (technology) => {
         this.formSubmit.emit(technology);

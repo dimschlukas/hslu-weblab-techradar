@@ -22,7 +22,7 @@ import { AddTechnologyDialogComponent } from '../../dialogs/add-technology-dialo
 import { Router } from '@angular/router';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatMenuModule } from '@angular/material/menu';
-import { PublishTechnologyDialogComponent } from '../../dialogs/publish-technology-dialog/publish-technology-dialog.component';
+import { EditClassificationDialogComponent } from '../../dialogs/edit-classification-dialog/edit-classification-dialog.component';
 import { EditTechnologyDialogComponent } from '../../dialogs/edit-technolgy-dialog/edit-technology-dialog.component';
 
 @Component({
@@ -170,10 +170,16 @@ export class TechnologyViewerTabelComponent implements AfterViewInit, OnInit {
   }
 
   openPublishDialog(initialData: Technology) {
-    const dialogRef = this.dialog.open<PublishTechnologyDialogComponent, any, Technology>(
-      PublishTechnologyDialogComponent,
+    const initialDataCopy = { ...initialData };
+    initialDataCopy.published = true;
+    const dialogRef = this.dialog.open<EditClassificationDialogComponent, any, Technology>(
+      EditClassificationDialogComponent,
       {
-        data: initialData,
+        data: {
+          initialData: initialDataCopy,
+          formTitle: 'Publish Technology',
+          formButtonText: 'Publish'
+        },
         maxWidth: '100vw'
       }
     );

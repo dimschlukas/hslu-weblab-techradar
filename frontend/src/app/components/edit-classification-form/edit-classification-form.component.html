@@ -1,5 +1,5 @@
-<div class="w-full md:max-w-2xl place-self-center p-4 max-h-[90vh] overflow-y-auto">
-    <p class="text-4xl">Publish Technology</p>
+<div class="w-full md:w-2xl place-self-center p-4 max-h-[90vh] overflow-y-auto">
+    <p class="text-4xl">{{formTitle}}</p>
     <p class="text-3xl">{{initialData.name}}</p>
     <div class="h-10 py-2">
         @if (errorMessage) {
@@ -26,13 +26,13 @@
                     <textarea rows=5 matInput [formControl]="technologyForm.controls.justification"
                         [errorStateMatcher]="matcher"></textarea>
                     @if (technologyForm.controls.justification.hasError('required')) {
-                    <mat-error>Category is <strong>required</strong></mat-error>
+                    <mat-error>Justification is <strong>required</strong></mat-error>
                     }
                 </mat-form-field>
             </div>
         </div>
         <div class="w-full md:w-min md:place-self-end">
-            <button mat-flat-button class="w-full">Publish</button>
+            <button mat-flat-button class="w-full">{{formButtonText}}</button>
         </div>
     </form>
 </div>
