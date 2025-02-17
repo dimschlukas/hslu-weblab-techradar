@@ -56,4 +56,12 @@
 - Add responsive design for technology table for mobile and desktop
 - Finish routing between admin console and dashboard
 
-**Total: 39h**
+# 2025-02-16 (5h)
+
+- Fix backend errormessages not passing correctly to the client
+- Let the admin create unpublished technologies and publish them later
+- Log every login and register attempt (successful and unsuccessful) to the database
+- Let the admin edit technologies
+- Fix case sensitive sorting of tabular view
+
+**Total: 44h**
