@@ -2,11 +2,12 @@
 @use '@angular/material' as mat;
 @use "tailwindcss";
 
-html, body { height: 100%; 
-    @include mat.theme((
-        color: mat.$violet-palette,
-        typography: Roboto,
-        density: -1,
-      )); 
-      scrollbar-gutter: stable;
-    }
+html, body { 
+  height: 100%; 
+  scrollbar-gutter: stable;
+  @include mat.theme((
+      color: mat.$violet-palette,
+      typography: Roboto,
+      density: -1,
+    )); 
+  }
