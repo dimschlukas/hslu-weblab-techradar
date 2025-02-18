@@ -22,8 +22,7 @@ import { AddTechnologyDialogComponent } from '../../dialogs/add-technology-dialo
 import { Router } from '@angular/router';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatMenuModule } from '@angular/material/menu';
-import { EditClassificationDialogComponent } from '../../dialogs/edit-classification-dialog/edit-classification-dialog.component';
-import { EditTechnologyDialogComponent } from '../../dialogs/edit-technolgy-dialog/edit-technology-dialog.component';
+import { TechnologyDialogService } from '../../shared/services/technology-dialog/technology-dialog.service';
 
 @Component({
   selector: 'app-technology-viewer-tabel',
@@ -64,7 +63,8 @@ export class TechnologyViewerTabelComponent implements AfterViewInit, OnInit {
   constructor(
     private technologiesService: TechnologiesService,
     private breakpointObserver: BreakpointObserver,
-    private router: Router
+    private router: Router,
+    private dialogService: TechnologyDialogService
   ) {}
   ngOnInit(): void {
     this.getTechnologies();
@@ -130,19 +130,39 @@ export class TechnologyViewerTabelComponent implements AfterViewInit, OnInit {
 
   editTechnology(technology: Technology) {
     if (this.isAdministration) {
-      this.openEditDialog(technology);
+      this.dialogService.openEditDialog(technology, (updatedTech) => {
+        const index = this.technologies.data.findIndex((t) => t._id === updatedTech._id);
+        if (index !== -1) {
+          this.technologies.data[index] = updatedTech;
+          this.technologies.data = [...this.technologies.data];
+        }
+      });
     }
   }
 
   editClassification(technology: Technology) {
     if (this.isAdministration) {
-      this.openEditClassificationDialog(technology);
+      this.dialogService.openEditClassificationDialog(technology, (updatedTech) => {
+        const index = this.technologies.data.findIndex((t) => t._id === updatedTech._id);
+        if (index !== -1) {
+          this.technologies.data[index] = updatedTech;
+          this.technologies.data = [...this.technologies.data];
+        }
+      });
     }
   }
 
   publishTechnology(technology: Technology) {
     if (this.isAdministration) {
-      this.openPublishDialog(technology);
+      const technologyCopy = { ...technology };
+      technologyCopy.published = true;
+      this.dialogService.openPublishDialog(technologyCopy, (updatedTech) => {
+        const index = this.technologies.data.findIndex((t) => t._id === updatedTech._id);
+        if (index !== -1) {
+          this.technologies.data[index] = updatedTech;
+          this.technologies.data = [...this.technologies.data];
+        }
+      });
     }
   }
 
@@ -169,77 +189,6 @@ export class TechnologyViewerTabelComponent implements AfterViewInit, OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.technologies.data = [...this.technologies.data, result];
-      }
-    });
-  }
-
-  openPublishDialog(initialData: Technology) {
-    const initialDataCopy = { ...initialData };
-    initialDataCopy.published = true;
-    const dialogRef = this.dialog.open<EditClassificationDialogComponent, any, Technology>(
-      EditClassificationDialogComponent,
-      {
-        data: {
-          initialData: initialDataCopy,
-          formTitle: 'Publish Technology',
-          formButtonText: 'Publish'
-        },
-        maxWidth: '100vw'
-      }
-    );
-
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        const index = this.technologies.data.findIndex((t) => t._id === result._id);
-        if (index !== -1) {
-          this.technologies.data[index] = result;
-          this.technologies.data = [...this.technologies.data];
-        }
-      }
-    });
-  }
-
-  openEditDialog(initialData: Technology) {
-    const dialogRef = this.dialog.open<EditTechnologyDialogComponent, any, Technology>(
-      EditTechnologyDialogComponent,
-      {
-        data: initialData,
-        maxWidth: '100vw'
-      }
-    );
-
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        const index = this.technologies.data.findIndex((t) => t._id === result._id);
-        if (index !== -1) {
-          this.technologies.data[index] = result;
-          this.technologies.data = [...this.technologies.data];
-        }
-      }
-    });
-  }
-
-  openEditClassificationDialog(initialData: Technology) {
-    const initialDataCopy = { ...initialData };
-    const dialogRef = this.dialog.open<EditClassificationDialogComponent, any, Technology>(
-      EditClassificationDialogComponent,
-      {
-        data: {
-          initialData: initialDataCopy,
-          formTitle: 'Edit Classification',
-          formButtonText: 'Save'
-        },
-        maxWidth: '100vw'
-      }
-    );
-
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        const index = this.technologies.data.findIndex((t) => t._id === result._id);
-        if (index !== -1) {
-          this.technologies.data[index] = result;
-          this.technologies.data = [...this.technologies.data];
-        }
       }
     });
   }
