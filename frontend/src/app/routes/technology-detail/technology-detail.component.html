@@ -1,7 +1,7 @@
-@if (technology) {
 <div class="w-full md:max-w-7xl place-self-center p-4">
     <mat-card appearance="outlined">
         <mat-card-content>
+            @if (technology) {
             <div class="w-full flex flex-row justify-between text-wrap">
                 <div>
                     <p class="text-4xl flex items-center gap-2">{{ technology.name }}
@@ -54,7 +54,11 @@
                 </div>
             </div>
 
+            } @else if (errorMessage) {
+            <div>
+                <p class="text-xl text-red-500  ">{{errorMessage}}</p>
+            </div>
+            }
         </mat-card-content>
     </mat-card>
 </div>
-}

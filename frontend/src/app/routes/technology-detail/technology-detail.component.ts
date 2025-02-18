@@ -19,6 +19,7 @@ import { TechnologyDialogService } from '../../shared/services/technology-dialog
 })
 export class TechnologyDetailComponent implements OnInit {
   technology?: Technology;
+  errorMessage: string | null = null;
   isAdmin = false;
 
   constructor(
@@ -32,9 +33,14 @@ export class TechnologyDetailComponent implements OnInit {
     this.isAdmin = this.authService.isLoggedInAsAdmin();
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.technologiesService
-        .getTechnology(id)
-        .subscribe((technology) => (this.technology = technology));
+      this.technologiesService.getTechnology(id).subscribe({
+        next: (technology) => {
+          this.technology = technology;
+        },
+        error: (error: Error) => {
+          this.errorMessage = error.message;
+        }
+      });
     }
   }
 
