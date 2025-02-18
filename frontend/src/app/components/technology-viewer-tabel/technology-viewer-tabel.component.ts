@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, inject, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, inject, Input, OnInit, ViewChild } from '@angular/core';
 import {
   MatTableDataSource,
   MatTableModule,
@@ -47,6 +47,7 @@ import { EditTechnologyDialogComponent } from '../../dialogs/edit-technolgy-dial
   styleUrl: './technology-viewer-tabel.component.scss'
 })
 export class TechnologyViewerTabelComponent implements AfterViewInit, OnInit {
+  @Input() isAdministration = false;
   displayedColumns: string[] = [];
   technologies = new MatTableDataSource<Technology>([]);
   categories: string[] = ['Techniques', 'Platforms', 'Tools', 'Languages & Frameworks'];
@@ -72,14 +73,10 @@ export class TechnologyViewerTabelComponent implements AfterViewInit, OnInit {
       if (result.matches) {
         this.displayedColumns = ['name', 'category', 'ring'];
       } else {
-        this.displayedColumns = [
-          'name',
-          'category',
-          'ring',
-          'description',
-          'justification',
-          'edit'
-        ];
+        this.displayedColumns = ['name', 'category', 'ring', 'description', 'justification'];
+        if (this.isAdministration) {
+          this.displayedColumns.push('edit');
+        }
       }
     });
   }
@@ -122,28 +119,38 @@ export class TechnologyViewerTabelComponent implements AfterViewInit, OnInit {
   }
 
   getTechnologies() {
-    this.technologiesService.getTechnologies().subscribe((data) => (this.technologies.data = data));
+    this.technologiesService
+      .getTechnologies(!this.isAdministration ? { published: true } : {})
+      .subscribe((data) => (this.technologies.data = data));
   }
 
   editTechnology(technology: Technology) {
-    this.openEditDialog(technology);
+    if (this.isAdministration) {
+      this.openEditDialog(technology);
+    }
   }
 
   editClassification(technology: Technology) {
-    this.openEditClassificationDialog(technology);
+    if (this.isAdministration) {
+      this.openEditClassificationDialog(technology);
+    }
   }
 
   publishTechnology(technology: Technology) {
-    this.openPublishDialog(technology);
+    if (this.isAdministration) {
+      this.openPublishDialog(technology);
+    }
   }
 
   addTechnologies() {
-    if (this.breakpointObserver.isMatched([Breakpoints.Handset])) {
-      // Mobile: Navigate to a new page
-      this.router.navigate(['/admin/add-technology']);
-    } else {
-      // Desktop: Open a dialog
-      this.openAddDialog();
+    if (this.isAdministration) {
+      if (this.breakpointObserver.isMatched([Breakpoints.Handset])) {
+        // Mobile: Navigate to a new page
+        this.router.navigate(['/admin/add-technology']);
+      } else {
+        // Desktop: Open a dialog
+        this.openAddDialog();
+      }
     }
   }
 

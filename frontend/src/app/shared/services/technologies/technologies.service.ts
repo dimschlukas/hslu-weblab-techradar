@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../../environment/environment';
 import { catchError, Observable, of, throwError } from 'rxjs';
@@ -12,9 +12,10 @@ export class TechnologiesService {
 
   constructor(private http: HttpClient) {}
 
-  getTechnologies(): Observable<Technology[]> {
+  getTechnologies(params = {}): Observable<Technology[]> {
     return this.http
       .get<Technology[]>(this.url, {
+        params,
         withCredentials: true
       })
       .pipe(catchError(this.handleError));
