@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { AuthService } from '../../shared/services/auth/auth.service';
 import { MatChipsModule } from '@angular/material/chips';
+import { TechnologyDialogService } from '../../shared/services/technology-dialog/technology-dialog.service';
 
 @Component({
   selector: 'app-technology-detail',
@@ -17,14 +18,14 @@ import { MatChipsModule } from '@angular/material/chips';
   styleUrl: './technology-detail.component.scss'
 })
 export class TechnologyDetailComponent implements OnInit {
-  publishTechnology: any;
   technology?: Technology;
   isAdmin = false;
 
   constructor(
     private route: ActivatedRoute,
     private technologiesService: TechnologiesService,
-    private authService: AuthService
+    private authService: AuthService,
+    private dialogService: TechnologyDialogService
   ) {}
 
   ngOnInit() {
@@ -37,13 +38,32 @@ export class TechnologyDetailComponent implements OnInit {
     }
   }
 
-  editClassification(arg0: any) {
-    throw new Error('Method not implemented.');
+  editTechnology(technology: Technology) {
+    if (this.isAdmin) {
+      this.dialogService.openEditDialog(
+        technology,
+        (updatedTech) => (this.technology = updatedTech)
+      );
+    }
   }
-  editTechnology(arg0: any) {
-    throw new Error('Method not implemented.');
+
+  editClassification(technology: Technology) {
+    if (this.isAdmin) {
+      this.dialogService.openEditClassificationDialog(
+        technology,
+        (updatedTech) => (this.technology = updatedTech)
+      );
+    }
   }
-  onEdit() {
-    throw new Error('Method not implemented.');
+
+  publishTechnology(technology: Technology) {
+    if (this.isAdmin) {
+      const technologyCopy = { ...technology };
+      technologyCopy.published = true;
+      this.dialogService.openPublishDialog(
+        technologyCopy,
+        (updatedTech) => (this.technology = updatedTech)
+      );
+    }
   }
 }
