@@ -56,7 +56,7 @@ export class LoginComponent {
     this.authService.login(formData).subscribe({
       next: (isAuthenticated) => {
         if (isAuthenticated) {
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/viewer']);
         }
       },
       error: (error: Error) => {

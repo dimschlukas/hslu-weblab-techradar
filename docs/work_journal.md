@@ -54,7 +54,7 @@
 
 - Finish add-technology-dialog
 - Add responsive design for technology table for mobile and desktop
-- Finish routing between admin console and dashboard
+- Finish routing between admin console and viewer
 
 # 2025-02-16 (5h)
 

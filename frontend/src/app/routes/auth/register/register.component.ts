@@ -77,7 +77,7 @@ export class RegisterComponent {
     this.authService.register(formData).subscribe({
       next: (isAuthenticated) => {
         if (isAuthenticated) {
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/viewer']);
         }
       },
       error: (error: Error) => {
