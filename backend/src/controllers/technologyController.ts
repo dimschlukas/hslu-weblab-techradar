@@ -1,9 +1,14 @@
 import { Request, Response } from 'express';
 import Technology from '../models/technologyModel.js';
+import { isAdminRequest } from '../utils/isAdmin.js';
 
 export const getTechnologies = async (req: Request, res: Response): Promise<void> => {
   try {
-    const technologies = await Technology.find();
+    const query: any = { ...req.query };
+    if (!isAdminRequest(req)) {
+      query.published = true;
+    }
+    const technologies = await Technology.find(query);
     res.json(technologies);
   } catch (err) {
     res.status(500).json({ message: 'Server error' });
@@ -17,6 +22,12 @@ export const getTechnology = async (req: Request, res: Response): Promise<void> 
       res.status(404).json({ message: `Technology not found` });
       return;
     }
+
+    if (!isAdminRequest(req) && technology.published === false) {
+      res.status(403).json({ message: 'Access denied, unpublished technology' });
+      return;
+    }
+
     res.json(technology);
   } catch (error) {
     res.status(500).json({ message: 'Server error' });
