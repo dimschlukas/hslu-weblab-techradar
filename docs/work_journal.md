@@ -69,4 +69,14 @@
 - Cleanup project and do some chores
 - Lets the admin edit classifications of a technology
 
-**Total: 47h**
+# 2026-02-18 (5h)
+
+- Create the technology viewer
+  - Reused admin viewer table but use admin checks to show and hide admin only controls
+- Make user login and registration ignore case sensitive emails
+- Create a technology details page
+  - Also make technology from details page editable, and hide certain props if user has no admin rights
+- Protect POST PUT DELETE api endpoints with isAdminMiddleware
+  - Also protect GET to only return published technologies if user has no admin rights.
+
+**Total: 52h**
