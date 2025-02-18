@@ -124,6 +124,10 @@ export class TechnologyViewerTabelComponent implements AfterViewInit, OnInit {
       .subscribe((data) => (this.technologies.data = data));
   }
 
+  navigateToDetail(row: any) {
+    this.router.navigate([`/detail/${row._id}`]);
+  }
+
   editTechnology(technology: Technology) {
     if (this.isAdministration) {
       this.openEditDialog(technology);

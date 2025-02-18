@@ -21,6 +21,14 @@ export class TechnologiesService {
       .pipe(catchError(this.handleError));
   }
 
+  getTechnology(id: string): Observable<Technology> {
+    return this.http
+      .get<Technology>(`${this.url}/${id}`, {
+        withCredentials: true
+      })
+      .pipe(catchError(this.handleError));
+  }
+
   addTechnology(technology: Technology): Observable<Technology> {
     return this.http
       .post<Technology>(this.url, technology, {
