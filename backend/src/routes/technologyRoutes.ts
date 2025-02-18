@@ -7,13 +7,14 @@ import {
   deleteTechnology
 } from '../controllers/technologyController.js';
 import { protect } from '../middleware/authMiddleware.js';
+import { isAdmin } from '../middleware/isAdminMiddleware.js';
 
 const router = express.Router();
 
 router.get('/', protect, getTechnologies);
 router.get('/:id', protect, getTechnology);
-router.post('/', protect, createTechnology);
-router.put('/:id', protect, updateTechnology);
-router.delete('/:id', protect, deleteTechnology);
+router.post('/', protect, isAdmin, createTechnology);
+router.put('/:id', protect, isAdmin, updateTechnology);
+router.delete('/:id', protect, isAdmin, deleteTechnology);
 
 export default router;
