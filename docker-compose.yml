@@ -3,33 +3,38 @@ version: '3.8'
 services:
   database:
     extends:
-      file: ./config/docker-compose.yml
+      file: ./database/docker-compose.yml
       service: mongo
+    environment:
+      - MONGO_APP_USERNAME=appuser
+      - MONGO_APP_PASSWORD=securepassword
+      - MONGO_PORT=27017
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=example
+      - MONGO_INITDB_DATABASE=techradardb
 
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
     container_name: backend
+    environment:
+      - MONGO_URI=mongodb://${MONGO_APP_USERNAME}:${MONGO_APP_PASSWORD}@database:${MONGO_PORT}/${MONGO_INITDB_DATABASE}
+      - BACKEND_PORT=${BACKEND_PORT}
+      - JWT_SECRET=${JWT_SECRET}
     ports:
-      - '3000:3000'
-    env_file: './backend/.env'
+      - '${BACKEND_PORT}:3000'
     depends_on:
       - database
-    volumes:
-      - ./backend:/usr/src/app
-      - /usr/src/app/node_modules
-    command: npm run start
 
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+      args:
+        - BACKEND_URL=${BACKEND_URL}
     container_name: frontend
     ports:
-      - '4200:4200'
+      - '80:80'
     depends_on:
       - backend
-    volumes:
-      - ./frontend:/usr/src/app
-      - /usr/src/app/node_modules
