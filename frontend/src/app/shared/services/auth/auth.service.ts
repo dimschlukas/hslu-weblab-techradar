@@ -17,8 +17,7 @@ export class AuthService {
   login(credentials: LoginCredentials): Observable<User> {
     return this.http
       .post<HttpResponse<User>>(`${this.url}/login`, credentials, {
-        observe: 'response',
-        withCredentials: true
+        observe: 'response'
       })
       .pipe(
         map((res) => {
@@ -35,8 +34,7 @@ export class AuthService {
   register(credentials: LoginCredentials): Observable<User> {
     return this.http
       .post<HttpResponse<User>>(`${this.url}/register`, credentials, {
-        observe: 'response',
-        withCredentials: true
+        observe: 'response'
       })
       .pipe(
         map((res) => {
