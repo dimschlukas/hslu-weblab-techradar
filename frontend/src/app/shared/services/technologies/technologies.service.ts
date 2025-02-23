@@ -15,33 +15,22 @@ export class TechnologiesService {
   getTechnologies(params = {}): Observable<Technology[]> {
     return this.http
       .get<Technology[]>(this.url, {
-        params,
-        withCredentials: true
+        params
       })
       .pipe(catchError(this.handleError));
   }
 
   getTechnology(id: string): Observable<Technology> {
-    return this.http
-      .get<Technology>(`${this.url}/${id}`, {
-        withCredentials: true
-      })
-      .pipe(catchError(this.handleError));
+    return this.http.get<Technology>(`${this.url}/${id}`).pipe(catchError(this.handleError));
   }
 
   addTechnology(technology: Technology): Observable<Technology> {
-    return this.http
-      .post<Technology>(this.url, technology, {
-        withCredentials: true
-      })
-      .pipe(catchError(this.handleError));
+    return this.http.post<Technology>(this.url, technology).pipe(catchError(this.handleError));
   }
 
   updateTechnology(technology: Technology): Observable<Technology> {
     return this.http
-      .put<Technology>(`${this.url}/${technology._id}`, technology, {
-        withCredentials: true
-      })
+      .put<Technology>(`${this.url}/${technology._id}`, technology)
       .pipe(catchError(this.handleError));
   }
 
