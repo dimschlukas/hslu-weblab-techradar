@@ -5,7 +5,7 @@
         <mat-error>{{errorMessage}}</mat-error>
         }
     </div>
-    <form [formGroup]="technologyForm" (ngSubmit)="onSubmit()">
+    <form id="createTechnologyForm" [formGroup]="technologyForm" (ngSubmit)="onSubmit()">
         <div class="grid grid-cols-1 md:grid-cols-2 md:gap-4">
             <div>
                 <mat-form-field class="w-full">

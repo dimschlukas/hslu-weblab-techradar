@@ -7,7 +7,7 @@
                 <mat-error>{{errorMessage}}</mat-error>
                 }
             </div>
-            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <form id="loginForm" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
                 <mat-form-field class="w-full">
                     <mat-label>Email</mat-label>
                     <input type="email" matInput [formControl]="registerForm.controls.email"

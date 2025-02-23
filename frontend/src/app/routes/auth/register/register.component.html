@@ -10,7 +10,7 @@
                 <mat-error>Passwords do not match</mat-error>
                 }
             </div>
-            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <form id="registerForm" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
                 <mat-form-field class="w-full">
                     <mat-label>Email</mat-label>
                     <input type="email" matInput [formControl]="registerForm.controls.email"
