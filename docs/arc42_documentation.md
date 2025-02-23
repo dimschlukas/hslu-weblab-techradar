@@ -86,11 +86,15 @@ Security measures such as authentication, role-based access control, and audit l
 
 ### Level 3 Frontend
 
-![C3_backend](./images/C3_frontend.png)
+![C3 Frontend](./images/C3_frontend.png)
 
 ### Level 3 Backend
 
-![C1_backend](./images/C3_backend.png)
+![C3 Backend](./images/C3_backend.png)
+
+### Level 4 Database
+
+![C4 Database](./images/C4_database.png)
 
 ## 6. Runtime View
 
