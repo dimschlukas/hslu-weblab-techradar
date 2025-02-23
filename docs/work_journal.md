@@ -79,9 +79,11 @@
 - Protect POST PUT DELETE api endpoints with isAdminMiddleware
   - Also protect GET to only return published technologies if user has no admin rights.
 
-# 2025-02-13 (3h)
+# 2025-02-13 (6h)
 
 - Draft of arc42 ddocumentation.
-- Create C1, C2 and C3 of C4-Model
+- Create and add C4-Models to documentation
+- Add Playwright tests and configuration for end-to-end testing
+- Created initial presentation slides.
 
-**Total: 55h**
+**Total: 58h**
