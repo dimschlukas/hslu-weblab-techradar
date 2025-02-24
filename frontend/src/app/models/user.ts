@@ -1,5 +1,7 @@
 export interface User {
-  id: string;
+  _id: string;
   email: string;
   role: string;
+  createdAt: Date;
+  updatedAt: Date;
 }

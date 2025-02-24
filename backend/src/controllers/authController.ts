@@ -3,6 +3,7 @@ import User from '../models/userModel.js';
 import { comparePass, hashPass } from '../utils/passwort.js';
 import { generateToken } from '../utils/jwt.js';
 import LoginLog from '../models/loginLogModel.js';
+import { isApproved } from '../utils/isApproved.js';
 
 export const registerUser = async (req: Request, res: Response): Promise<void> => {
   try {
@@ -23,10 +24,6 @@ export const registerUser = async (req: Request, res: Response): Promise<void> =
     const user = new User({ email, password: hashedPassword });
     await user.save();
 
-    res.setHeader(
-      'Authorization',
-      `Bearer ${generateToken(user._id.toString(), user.email, user.role)}`
-    );
     res.status(201).send();
     logging('register', true, email, req.ip);
   } catch (err) {
@@ -47,6 +44,14 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
       logging('login', false, email, req.ip, message);
       return;
     }
+
+    if (!isApproved(user)) {
+      const message = 'Pending approval by Admin';
+      res.status(403).json({ message });
+      logging('login', false, email, req.ip, message);
+      return;
+    }
+
     res.setHeader(
       'Authorization',
       `Bearer ${generateToken(user._id.toString(), user.email, user.role)}`

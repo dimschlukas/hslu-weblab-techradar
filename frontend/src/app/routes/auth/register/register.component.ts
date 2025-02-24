@@ -75,10 +75,8 @@ export class RegisterComponent {
 
     console.log('Submit: ', formData);
     this.authService.register(formData).subscribe({
-      next: (isAuthenticated) => {
-        if (isAuthenticated) {
-          this.router.navigate(['/viewer']);
-        }
+      next: () => {
+        this.router.navigate(['/login']);
       },
       error: (error: Error) => {
         this.errorMessage = error.message;

@@ -33,19 +33,8 @@ export class AuthService {
 
   register(credentials: LoginCredentials): Observable<User> {
     return this.http
-      .post<HttpResponse<User>>(`${this.url}/register`, credentials, {
-        observe: 'response'
-      })
-      .pipe(
-        map((res) => {
-          const token = res.headers.get('Authorization')?.split(' ')[1];
-          if (token) {
-            localStorage.setItem('token', token);
-            return this.getPayload(token);
-          }
-        }),
-        catchError(this.handleError)
-      );
+      .post<User>(`${this.url}/register`, credentials)
+      .pipe(catchError(this.handleError));
   }
 
   logout(): void {
@@ -61,6 +50,11 @@ export class AuthService {
   isLoggedInAsAdmin(): boolean {
     const token = this.getToken();
     return token !== null && !this.isTokenExpired(token) && this.isAdmin(token);
+  }
+
+  isNotApproved(): boolean {
+    const token = this.getToken();
+    return token !== null && !this.isTokenExpired(token) && this.isApproved(token);
   }
 
   getToken(): string | null {
@@ -80,6 +74,15 @@ export class AuthService {
     try {
       const payload = this.getPayload(token);
       return payload.role == 'CTO' || payload.role == 'Tech Lead';
+    } catch (e) {
+      return false;
+    }
+  }
+
+  private isApproved(token: string) {
+    try {
+      const payload = this.getPayload(token);
+      return payload.role == 'Employee' || payload.role == 'CTO' || payload.role == 'Tech Lead';
     } catch (e) {
       return false;
     }
