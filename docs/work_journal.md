@@ -81,9 +81,14 @@
 
 # 2025-02-13 (6h)
 
-- Draft of arc42 ddocumentation.
+- Draft of arc42 documentation.
 - Create and add C4-Models to documentation
 - Add Playwright tests and configuration for end-to-end testing
 - Created initial presentation slides.
 
-**Total: 58h**
+# 2025-02-13 (2h)
+
+- Finish presentation slided
+- improve C4-models
+
+**Total: 60h**
