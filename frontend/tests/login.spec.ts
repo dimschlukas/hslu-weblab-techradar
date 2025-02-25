@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { resetDatabase } from './helper.spec';
+import { resetDatabase } from './helper';
 
 test('Login Page', async ({ page }) => {
   await page.goto('http://localhost:4200');

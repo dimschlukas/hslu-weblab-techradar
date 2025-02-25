@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { resetDatabase } from './helper.spec';
+import { resetDatabase } from './helper';
 
 test.beforeEach(async ({ page }, testInfo) => {
   await page.goto('http://localhost:4200/login');
@@ -52,7 +52,7 @@ test('Admin logging view', async ({ page }) => {
   await expect(headers).toHaveText([
     'Date',
     'Type',
-    'Sucessful?',
+    'Successful?',
     'Email',
     'IP Address',
     'Reason for fail'
