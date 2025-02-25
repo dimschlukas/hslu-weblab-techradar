@@ -2,12 +2,9 @@ import connectDB from './config/db.js';
 import userRoutes from './routes/userRoutes.js';
 import technologyRoutes from './routes/technologyRoutes.js';
 import express from 'express';
-import dotenv from 'dotenv';
 import authRoutes from './routes/authRoutes.js';
 import logRoutes from './routes/logRoutes.js';
 import cors from 'cors';
-
-dotenv.config();
 
 const app = express();
 
