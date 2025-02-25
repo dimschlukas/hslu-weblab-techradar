@@ -6,7 +6,7 @@ services:
     container_name: mongodb
     restart: always
     ports:
-      - 27017:27017
+      - ${MONGO_PORT}:${MONGO_PORT}
     volumes:
       # - mongo-data:/data/db
       - ./seed:/docker-entrypoint-initdb.d
