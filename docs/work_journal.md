@@ -56,7 +56,7 @@
 - Add responsive design for technology table for mobile and desktop
 - Finish routing between admin console and viewer
 
-# 2025-02-16 (5h)
+## 2025-02-16 (5h)
 
 - Fix backend errormessages not passing correctly to the client
 - Let the admin create unpublished technologies and publish them later
@@ -64,12 +64,12 @@
 - Let the admin edit technologies
 - Fix case sensitive sorting of tabular view
 
-# 2025-02-17 (3h)
+## 2025-02-17 (3h)
 
 - Cleanup project and do some chores
 - Lets the admin edit classifications of a technology
 
-# 2025-02-18 (5h)
+## 2025-02-18 (5h)
 
 - Create the technology viewer
   - Reused admin viewer table but use admin checks to show and hide admin only controls
@@ -79,14 +79,14 @@
 - Protect POST PUT DELETE api endpoints with isAdminMiddleware
   - Also protect GET to only return published technologies if user has no admin rights.
 
-# 2025-02-13 (6h)
+## 2025-02-23 (6h)
 
 - Draft of arc42 documentation.
 - Create and add C4-Models to documentation
 - Add Playwright tests and configuration for end-to-end testing
 - Created initial presentation slides.
 
-# 2025-02-13 (6h)
+## 2025-02-24 (6h)
 
 - Finish presentation slided
 - improve C4-models
@@ -95,4 +95,8 @@
 - Add logging component on admin dashboard
 - Add backend api calls for logs
 
-**Total: 64h**
+## 2025-02-25 (3h)
+
+- Cleanup project
+
+**Total: 67h**
