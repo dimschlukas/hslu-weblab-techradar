@@ -2,8 +2,8 @@ import { test, expect } from '@playwright/test';
 
 test.beforeEach(async ({ page }, testInfo) => {
   await page.goto('http://localhost:4200/login');
-  await page.getByLabel('Email').fill('lukas@gmail.com');
-  await page.getByLabel('Password').fill('password');
+  await page.getByLabel('Email').fill('lukas@hslu.ch');
+  await page.getByLabel('Password').fill('santana01');
   await page.getByRole('button', { name: 'Login' }).click();
   await page.waitForURL('**/viewer');
 });
@@ -18,7 +18,7 @@ test('Viewer', async ({ page }) => {
 test('Admin Panel', async ({ page }) => {
   await page.goto('http://localhost:4200/admin');
 
-  const table = page.locator('table'); // Adjust the selector if needed
+  const table = page.locator('table');
   const headers = table.locator('thead tr th');
 
   await expect(headers).toHaveText([

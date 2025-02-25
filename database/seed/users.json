@@ -1,11 +1,19 @@
 [
     {
-        "_id": {
-            "$oid": "65b8d8f2e1b1c25a8b7e4a6d"
-        },
-        "email": "lukas@gmail.com",
+        "email": "play@hslu.ch",
+        "password": "$2b$10$WPnQu3H95md/vzvRSKkJPexOprHGk4csmfRCY7XZPer.wePju8Sti",
         "role": "CTO",
-        "password": "$2b$10$alu4XYEWeWesPe38Q4Yfv.XFB9aArsvXElGTFqplXEFTg2rKHTxya",
+        "createdAt": {
+            "$date": "2025-02-25T16:30:30.702Z"
+        },
+        "updatedAt": {
+            "$date": "2025-02-25T16:30:30.702Z"
+        }
+    },
+    {
+        "email": "lukas@hslu.ch",
+        "role": "CTO",
+        "password": "$2b$10$531nhe61/Zqo/bphYMyuSeEOrhceOSyGm5PAAVHwF1nH3O2RmGsGq",
         "createdAt": {
             "$date": "2025-02-05T12:00:00Z"
         },
@@ -14,12 +22,9 @@
         }
     },
     {
-        "_id": {
-            "$oid": "65b8d8f2e1b1c25a8b7e4a6e"
-        },
-        "email": "andreas@gmail.com",
+        "email": "andreas@hslu.ch",
         "role": "Tech Lead",
-        "password": "$2b$10$CNfZ2ozTikBe5VkE.b4xU.oyDY4qTSkfPfpG8fEXLCnYP9ilhlDGS",
+        "password": "$2b$10$2mL6q0bgqhhRmh.bua5RW.QO9N.qd.WBx82DdKEE/KBm62G5NX8l2",
         "createdAt": {
             "$date": "2025-02-05T12:00:00Z"
         },
@@ -28,12 +33,20 @@
         }
     },
     {
-        "_id": {
-            "$oid": "65b8d8f2e1b1c25a8b7e4a6f"
+        "email": "philipp@hslu.ch",
+        "role": "Employee",
+        "password": "$2b$10$LCK2h8MDcSZUkRAC4IWoxujJZSqdkTjG9uLsAQ8I9k9NcH6vi9dj2",
+        "createdAt": {
+            "$date": "2025-02-05T12:00:00Z"
         },
-        "email": "Philipp@gmail.com",
-        "role": null,
-        "password": "$2b$10$R9HdxoT2KGwwCgwrITmWj.ggfQSpMA.vUQYN4lRgNoUdJTztPOlt2",
+        "updatedAt": {
+            "$date": "2025-02-05T12:00:00Z"
+        }
+    },
+    {
+        "email": "martin@hslu.ch",
+        "role": "",
+        "password": "$2b$10$uiA4dqM8zfUdxSwsBecNV.dSpFEkOx1Nu6Ne.OFgXJIDN5ovQneSK",
         "createdAt": {
             "$date": "2025-02-05T12:00:00Z"
         },
