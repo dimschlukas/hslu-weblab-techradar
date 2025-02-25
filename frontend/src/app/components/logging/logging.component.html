@@ -1,0 +1,60 @@
+<div class="w-full md:max-w-7xl place-self-center p-4">
+    <mat-card appearance="outlined">
+        <mat-card-content>
+            <p class="text-2xl">Login and Register Logs</p>
+            @if (logs.data.length == 0) {
+            <div class="text-center">
+                <p>No Logs to display</p>
+            </div>
+            } @else {
+            <div class="overflow-auto">
+                <table mat-table [dataSource]="logs">
+
+                    <!-- Date Column -->
+                    <ng-container matColumnDef="timestamp">
+                        <th mat-header-cell *matHeaderCellDef> Date </th>
+                        <td mat-cell *matCellDef="let element"> {{element.timestamp | date: 'short'}} </td>
+                    </ng-container>
+
+                    <!-- Type Column -->
+                    <ng-container matColumnDef="type">
+                        <th mat-header-cell *matHeaderCellDef> Type </th>
+                        <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+                    </ng-container>
+
+                    <!-- Sucessful Login? Column -->
+                    <ng-container matColumnDef="success">
+                        <th mat-header-cell *matHeaderCellDef> Sucessful Login? </th>
+                        <td mat-cell *matCellDef="let element"> {{element.success}} </td>
+                    </ng-container>
+
+                    <!-- Email Column -->
+                    <ng-container matColumnDef="email">
+                        <th mat-header-cell *matHeaderCellDef> Email </th>
+                        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+                    </ng-container>
+
+                    <!-- IP Address Column -->
+                    <ng-container matColumnDef="ipAddress">
+                        <th mat-header-cell *matHeaderCellDef> IP Address </th>
+                        <td mat-cell *matCellDef="let element"> {{element.ipAddress}} </td>
+                    </ng-container>
+
+                    <!-- Reason for fail Column -->
+                    <ng-container matColumnDef="reason">
+                        <th mat-header-cell *matHeaderCellDef> Reason for fail </th>
+                        <td mat-cell *matCellDef="let element"> {{element.reason}} </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+                    </tr>
+                </table>
+            </div>
+            }
+            <mat-paginator [length]="totalLogs" [pageSize]="limit" [pageSizeOptions]="[10, 20, 50]"
+                (page)="onPageChange($event)">
+            </mat-paginator>
+        </mat-card-content>
+    </mat-card>
+</div>

@@ -4,6 +4,7 @@ import technologyRoutes from './routes/technologyRoutes.js';
 import express from 'express';
 import dotenv from 'dotenv';
 import authRoutes from './routes/authRoutes.js';
+import logRoutes from './routes/logRoutes.js';
 import cors from 'cors';
 
 dotenv.config();
@@ -29,5 +30,6 @@ app.use(cors(corsOptions));
 app.use('/api/users', userRoutes);
 app.use('/api/technologies', technologyRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/logs', logRoutes);
 
 export default app;
