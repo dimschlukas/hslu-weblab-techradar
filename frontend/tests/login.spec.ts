@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { resetDatabase } from './helper.spec';
 
 test('Login Page', async ({ page }) => {
   await page.goto('http://localhost:4200');
@@ -10,8 +11,8 @@ test('Login Page', async ({ page }) => {
 });
 
 test('Register Page', async ({ page }) => {
+  await resetDatabase();
   await page.goto('http://localhost:4200/register');
-
   await expect(page.locator('#registerForm')).toBeVisible();
   await expect(page.getByLabel('Email')).toBeVisible();
   await expect(page.getByRole('textbox', { name: 'Password', exact: true })).toBeVisible();
@@ -28,12 +29,13 @@ test('Login Logout flow', async ({ page }) => {
 });
 
 test('Register flow', async ({ page }) => {
+  await resetDatabase();
   await page.goto('http://localhost:4200/register');
   await page.getByLabel('Email').fill('newUser@hslu.ch');
   await page.getByRole('textbox', { name: 'Password', exact: true }).fill('santana01');
   await page.getByRole('textbox', { name: 'Confrim Password' }).fill('santana01');
   await page.getByRole('button', { name: 'Register' }).click();
-  await expect(page).toHaveURL(/\/viewer$/);
+  await expect(page).toHaveURL(/\/login$/);
 });
 
 test('Logout flow', async ({ page }) => {

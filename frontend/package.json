@@ -8,6 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
     "test:report": "playwright show-report"
   },
   "private": true,
@@ -42,6 +43,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "mongodb": "^6.13.1",
     "playwright": "^1.50.1",
     "typescript": "~5.7.2"
   }

@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { resetDatabase } from './helper.spec';
 
 test.beforeEach(async ({ page }, testInfo) => {
   await page.goto('http://localhost:4200/login');
@@ -9,16 +10,16 @@ test.beforeEach(async ({ page }, testInfo) => {
 });
 
 test('Viewer', async ({ page }) => {
-  const table = page.locator('table');
+  const table = page.locator('#technology-viewer');
   const headers = table.locator('thead tr th');
 
   await expect(headers).toHaveText(['Name', 'Category', 'Ring', 'Description', 'Justification']);
 });
 
-test('Admin Panel', async ({ page }) => {
+test('Admin Viewer', async ({ page }) => {
   await page.goto('http://localhost:4200/admin');
 
-  const table = page.locator('table');
+  const table = page.locator('#technology-viewer');
   const headers = table.locator('thead tr th');
 
   await expect(headers).toHaveText([
@@ -28,6 +29,33 @@ test('Admin Panel', async ({ page }) => {
     'Description',
     'Justification',
     'Edit'
+  ]);
+  await expect(page.getByRole('button', { name: 'Add Technology' })).toBeVisible();
+});
+
+test('Admin user approval view', async ({ page }) => {
+  await page.goto('http://localhost:4200/admin');
+
+  const table = page.locator('#approve-users-view');
+  const headers = table.locator('thead tr th');
+
+  await expect(headers).toHaveText(['Date', 'Email', 'Action']);
+  await expect(page.getByRole('button', { name: 'Add Technology' })).toBeVisible();
+});
+
+test('Admin logging view', async ({ page }) => {
+  await page.goto('http://localhost:4200/admin');
+
+  const table = page.locator('#logging-view');
+  const headers = table.locator('thead tr th');
+
+  await expect(headers).toHaveText([
+    'Date',
+    'Type',
+    'Sucessful?',
+    'Email',
+    'IP Address',
+    'Reason for fail'
   ]);
   await expect(page.getByRole('button', { name: 'Add Technology' })).toBeVisible();
 });
@@ -47,9 +75,10 @@ test('Admin Panel Switch', async ({ page }) => {
 
 test('Add Technology', async ({ page }) => {
   await page.goto('http://localhost:4200/admin');
+  await page.waitForURL('**/admin');
   await page.getByRole('button', { name: 'Add Technology' }).click();
 
-  await expect(page.locator('#createTechnologyForm')).toBeVisible;
+  await expect(page.locator('#createTechnologyForm')).toBeVisible();
 
   await page.getByRole('textbox', { name: 'Name' }).fill('New Technology');
   await page.getByRole('textbox', { name: 'Description' }).fill('New Description');
@@ -64,4 +93,5 @@ test('Add Technology', async ({ page }) => {
   await page.getByRole('button', { name: 'Save' }).click();
 
   await expect(page.getByRole('cell', { name: 'New Technology', exact: true })).toBeVisible();
+  await resetDatabase();
 });

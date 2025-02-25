@@ -37,7 +37,8 @@
                 </div>
             </div>
             <div class="overflow-auto">
-                <table mat-table matSort [dataSource]="technologies" matSortActive="name" matSortDirection="asc">
+                <table id="technology-viewer" mat-table matSort [dataSource]="technologies" matSortActive="name"
+                    matSortDirection="asc">
 
                     <!-- Name Column -->
                     <ng-container matColumnDef="name">
