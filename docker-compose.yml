@@ -28,6 +28,6 @@ services:
         - BACKEND_URL=${BACKEND_URL}
     container_name: frontend
     ports:
-      - '80:80'
+      - '${FRONTEND_PORT}:80'
     depends_on:
       - backend
