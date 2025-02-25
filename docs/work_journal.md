@@ -86,9 +86,13 @@
 - Add Playwright tests and configuration for end-to-end testing
 - Created initial presentation slides.
 
-# 2025-02-13 (2h)
+# 2025-02-13 (6h)
 
 - Finish presentation slided
 - improve C4-models
+- Add approve user component on admin dashboard
+- Add backend api calls for user
+- Add logging component on admin dashboard
+- Add backend api calls for logs
 
-**Total: 60h**
+**Total: 64h**
