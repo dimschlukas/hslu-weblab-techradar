@@ -10,7 +10,12 @@ services:
     volumes:
       # - mongo-data:/data/db
       - ./seed:/docker-entrypoint-initdb.d
-    env_file:
-      - .env
+    environment:
+      - MONGO_APP_USERNAME=${MONGO_APP_USERNAME}
+      - MONGO_APP_PASSWORD=${MONGO_APP_PASSWORD}
+      - MONGO_PORT=${MONGO_PORT}
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+      - MONGO_INITDB_DATABASE=${MONGO_INITDB_DATABASE}
 #volumes:
 #  mongo-data:

@@ -5,13 +5,6 @@ services:
     extends:
       file: ./database/docker-compose.yml
       service: mongo
-    environment:
-      - MONGO_APP_USERNAME=appuser
-      - MONGO_APP_PASSWORD=securepassword
-      - MONGO_PORT=27017
-      - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_INITDB_ROOT_PASSWORD=example
-      - MONGO_INITDB_DATABASE=techradardb
 
   backend:
     build:
