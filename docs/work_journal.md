@@ -99,4 +99,10 @@
 
 - Cleanup project
 
-**Total: 67h**
+## 2025-03-03 (2h)
+
+- Fix database reset/restore issue during tests
+- Update presentation
+- Add docker compose prod version
+
+**Total: 69h**
