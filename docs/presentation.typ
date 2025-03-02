@@ -152,15 +152,19 @@ GitHub Repository
     
   ]
 ,[
-#columns-content()[
-#qr-code("http://techradar.l-schmid.ch", width: 5cm)
+#grid(
+  columns: (1fr, 1.6fr),
+  [
+#qr-code("https://techradar.l-schmid.ch", width: 5cm)
 Techradar Playground
-][
-  http://techradar.l-schmid.ch
+  ],
+  [
+  https://techradar.l-schmid.ch
   
-  *Email*: `play@hslu.ch`
+  *Email*: `play@hslu.ch`\
   *Passwort*: `weblab`
-]])
-
+  ]
+)
+])
 
 = Fragen?
