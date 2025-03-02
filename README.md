@@ -28,7 +28,7 @@ Presentation slides are created in [Typst](https://typst.app/home) and exported 
 ### 1. Clone the Repository
 
 ```bash
-git clone git@github.com:dimschlukas/hslu-weblab-techradar.git
+git clone https://github.com/dimschlukas/hslu-weblab-techradar.git
 cd hslu-weblab-techradar
 ```
 
