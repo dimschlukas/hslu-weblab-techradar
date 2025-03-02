@@ -3,7 +3,6 @@ export interface Log {
   type: string;
   success: boolean;
   email: string;
-  ipAddress: string;
   reason: string;
   timestamp: Date;
 }

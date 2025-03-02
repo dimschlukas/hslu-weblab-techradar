@@ -34,15 +34,9 @@
                         <td mat-cell *matCellDef="let element"> {{element.email}} </td>
                     </ng-container>
 
-                    <!-- IP Address Column -->
-                    <ng-container matColumnDef="ipAddress">
-                        <th mat-header-cell *matHeaderCellDef> IP Address </th>
-                        <td mat-cell *matCellDef="let element"> {{element.ipAddress}} </td>
-                    </ng-container>
-
                     <!-- Reason for fail Column -->
                     <ng-container matColumnDef="reason">
-                        <th mat-header-cell *matHeaderCellDef> Reason for fail </th>
+                        <th mat-header-cell *matHeaderCellDef> Reason </th>
                         <td mat-cell *matCellDef="let element"> {{element.reason}} </td>
                     </ng-container>
 

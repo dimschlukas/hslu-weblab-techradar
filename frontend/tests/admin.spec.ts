@@ -49,14 +49,7 @@ test('Admin logging view', async ({ page }) => {
   const table = page.locator('#logging-view');
   const headers = table.locator('thead tr th');
 
-  await expect(headers).toHaveText([
-    'Date',
-    'Type',
-    'Successful?',
-    'Email',
-    'IP Address',
-    'Reason for fail'
-  ]);
+  await expect(headers).toHaveText(['Date', 'Type', 'Successful?', 'Email', 'Reason']);
   await expect(page.getByRole('button', { name: 'Add Technology' })).toBeVisible();
 });
 

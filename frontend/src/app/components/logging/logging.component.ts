@@ -27,7 +27,7 @@ import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/p
   styleUrl: './logging.component.scss'
 })
 export class LoggingComponent implements OnInit {
-  displayedColumns: string[] = ['timestamp', 'type', 'success', 'email', 'ipAddress', 'reason'];
+  displayedColumns: string[] = ['timestamp', 'type', 'success', 'email', 'reason'];
   logs = new MatTableDataSource<Log>([]);
   totalLogs: number = 0;
   limit: number = 10;
