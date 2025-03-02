@@ -100,23 +100,23 @@ cp .env.example .env
 
 ### 3. Start Individual Components
 
-Each component can be started individually from its respective subdirectory:
+You can start the entire development stack from the root directory:
+
+```bash
+npm run dev
+```
+
+Alternatively, each component can be started individually from its respective subdirectory:
 
 ```bash
 # Database
-cd database && docker compose up
+cd database && docker compose --env-file ../.env up
 
 # Backend
 cd backend && npm run dev
 
 # Frontend
 cd frontend && npm run start
-```
-
-Alternatively, you can start the entire development stack from the root directory:
-
-```bash
-npm run dev
 ```
 
 This will start the database, backend, and frontend together.
