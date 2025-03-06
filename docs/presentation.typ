@@ -22,8 +22,10 @@
 = Technology Radar
 == Zusatzfunktionen
 
-- Administrationsbereich
+
  - *Benutzerregistrierung* - Möglichkeit für neue Nutzer, sich im System zu registrieren
+ 
+- Administrationsbereich
  - *Benutzerfreigabe (User Approval)* - Admins können neue Benutzer manuell freischalten oder ablehnen
  - *Audit-Logs für Logins* - Alle Anmeldevorgänge werden protokolliert
 
@@ -34,6 +36,7 @@
 #grid(
   columns: (2fr, 1fr),
   [
+- Agil und Iterativ
 - Docker für Development und Deployment
  - Containerisierte Umgebung für eine konsistente Entwicklungs- und Produktionsumgebung
  - Datenbank-Initialisierung bei jedem Start für eine saubere Testumgebung
